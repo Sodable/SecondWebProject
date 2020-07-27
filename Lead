@@ -1,0 +1,65 @@
+필수 기능
+1. 회원가입
+2. 게시판[파일 업로드] : 사진 게시판/ txt게시판
+3. 공지사항 ( 누르면 펴지는 Jquery UI)
+MVC : JDBC Template(JDNI)
++ @ (캘린더 일정 공유 )
+
+기피 기능
+1. 쇼핑몰
+2. 관광(호텔 등)
+3. 판매
+4. 시뮬레이션
+5. 예매
+
+DB
+1. 회원가입
+2. 게시판
+
+-> package
+1안
+com.member.vo
+com.member.biz
+com.member.dao
+com.member.controller
+com.readerboard.vo
+com.readerboard.biz
+com.readerboard.dao
+com.readerboard.controller
+com.notice.vo
+com.notice.biz
+com.notice.dao
+com.notice.controller
+
+2안
+com.vo.MemberVO
+com.vo.ReaderBoardVO
+com.vo.NoticeVO
+com.biz.MemberVO
+com.biz.ReaderBoardVO
+com.biz.NoticeVO
+com.dao.MemberVO
+com.dao.ReaderBoardVO
+com.dao.NoticeVO
+com.notice.MemberVO
+com.notice.ReaderBoardVO
+com.notice.NoticeVO
+
+-> webcontent
+  - img
+  - css
+  - js
+  - view
+
+===================================================================
+설문 Example
+
+부동산 -> 기능
+우리는 부동산 웹사이트를 ... 기능으로 구축하려고 한다.
+1. 개인 신상 정보
+2. 이 기능은 ~ 기능인데 선택
+  1) 매매 보기기능
+  2) ..
+3. 
+4. 추가기능을 넣는다면 무엇을 ?
+  1)...
