@@ -1,0 +1,18 @@
+삭제하려는 폴더의 상위 폴더에서 우클릭 Git Bash Here 접속
+Bash Comand 창에서 명령어 입력
+
+** git rm (파일 및 폴더 명)  
+   : 원격 저장소와 로컬 저장소에 있는 파일을 삭제한다.
+** git rm -rf (파일 및 폴더 명) 
+   : 첫 번째 명령어 실패시 설정 
+** git rm -r --cached (파일 및 폴더 명)
+   : 원격 저장소에 있는 파일을 삭제한다. 로컬 저장소에 있는 파일을 삭제하지 않는다 
+** git commit -m "remove webstom (파일 및 폴더명) directory"
+** git push origin master
+
+<Tip>
+-파일이 여러개 있을때는 git rm -r --cached (파일명1 파일명2 파일명3 ...) 이런식으로 한번에 여러개 삭제 가능
+ : 파일명끼리 한칸씩 space 준 뒤에 파일 삭제.
+-Cmd창과 같이 위아래 화살표키로 명령어 다시 불러올 수 있음.
+-Cmd창에서 Ctrl+c,v 가 아닌 마우스로 붙여넣기 가능. 위 명령어를 복사해서 cmd창에 마우스를 가져다대고 오른쪽 클릭하면 붙여넣기 (Paste)가 나온다.
+ : Git Bash 에서는 붙여넣기 단축키 Shift + ins (insert Key)
