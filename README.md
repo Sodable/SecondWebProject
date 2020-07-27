@@ -3,6 +3,8 @@
 
 [Technology stack] : /Java/Maven/Spring/Servlet&amp;Jsp+MyBatis/ *MVC*
 
+@기상청 날씨데이터 서비스 - 기상자료개방포털https://data.kma.go.kr/cmmn/static/staticPage.do?page=intro
+
 -데이터 모델링
 
 -기획서 작성
