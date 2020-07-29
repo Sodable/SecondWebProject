@@ -6,6 +6,10 @@ public class MemberVO {
 	private String name;
 	private String tel;
 	private String email;
+	
+	public MemberVO() {
+		super();
+	}
 
 	public MemberVO(String id, String password, String name, String tel, String email) {
 		super();

@@ -34,9 +34,10 @@
 			<param-name>contextConfigLocation</param-name>
 			<param-value>/WEB-INF/dwm-servlet.xml</param-value>
 		</init-param>
+        <load-on-startup>1</load-on-startup>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>dwm</servlet-name>
-		<url-pattern>*.do</url-pattern>
+		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 </web-app>

@@ -9,12 +9,13 @@ import DWM.biz.MemberBiz;
 import DWM.vo.MemberVO;
 
 @Controller
+@RequestMapping("/member")
 public class MemberController {
 	
 	@Autowired
 	private MemberBiz biz;
 	
-	@RequestMapping("/memberInsert.do")
+	@RequestMapping(path = "/Insert.do")
 	public ModelAndView insert(MemberVO vo) {
 		String result=biz.insert(vo);
 		ModelAndView mav = new ModelAndView("result","myresult",result);
