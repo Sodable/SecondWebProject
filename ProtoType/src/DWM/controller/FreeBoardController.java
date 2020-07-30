@@ -2,8 +2,10 @@ package DWM.controller;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -27,6 +29,13 @@ public class FreeBoardController {
 		return mav;
 	}
 	
+	@RequestMapping(path="/viewbody",method = RequestMethod.GET)
+	public ModelAndView viewbody(@Param(value = "count") int count) {
+		List<FreeBoardVO> body = freeboardbiz.viewbody(count);
+		ModelAndView mav = new ModelAndView("freeboard/viewbody","viewbody",body);
+		return mav;
+	}
+	
 	@RequestMapping(path="/write")
 	public ModelAndView write() {
 		ModelAndView mav = new ModelAndView("freeboard/write");
@@ -38,7 +47,7 @@ public class FreeBoardController {
 		int res = freeboardbiz.write(vo);
 		ModelAndView mav = null;
 		if(res>0) {
-			mav = new ModelAndView("freeboard/main");
+			mav = view();
 		}else {
 			mav = new ModelAndView("freeboard/write");
 		}

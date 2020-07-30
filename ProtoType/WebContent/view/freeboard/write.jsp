@@ -17,7 +17,7 @@
 <option>잡담</option>
 <option>등등..</option>
 </select> -->
-<select name="weather" >
+<select name="fb_weather" >
 <option>날씨 선택</option>
 <option>맑음</option>
 <option>흐림</option>

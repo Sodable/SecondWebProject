@@ -23,4 +23,8 @@ public class FreeBoardBiz {
 		return freeboarddao.list();
 	}
 
+	public List<FreeBoardVO> viewbody(int count) {
+		return freeboarddao.viewbody(count);
+	}
+
 }

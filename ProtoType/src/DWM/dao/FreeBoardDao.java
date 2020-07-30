@@ -8,5 +8,6 @@ public interface FreeBoardDao {
 	
 	public int write(FreeBoardVO vo);
 	public List<FreeBoardVO> list();
+	public List<FreeBoardVO> viewbody(int count);
 	
 }

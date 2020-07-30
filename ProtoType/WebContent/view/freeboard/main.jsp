@@ -20,7 +20,7 @@
 	<tr>
 		<td><%=vo.getCount() %></td>
 		<td><%=vo.getFb_weather() %></td>
-		<td><%=vo.getTitle() %></td>
+		<td><a href="/ProtoType/freeboard/viewbody?count=<%=vo.getCount() %>" ><%=vo.getTitle() %></a></td>
 		<td><%=vo.getId() %></td>
 		<td><%=vo.getWrite_date() %></td>
 		<td><%=vo.getView_count() %></td>
