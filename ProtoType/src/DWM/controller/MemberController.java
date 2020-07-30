@@ -17,8 +17,15 @@ public class MemberController {
 	
 	@RequestMapping(path = "/Insert.do")
 	public ModelAndView insert(MemberVO vo) {
-		String result=biz.insert(vo);
-		ModelAndView mav = new ModelAndView("result","myresult",result);
+		String result=biz.insert(vo);		
+		ModelAndView mav = new ModelAndView("home/insert_result","myresult",result);
+		return mav;
+	}
+
+	@RequestMapping(path = "/login.do")
+	public ModelAndView login(MemberVO vo) {
+		String result=biz.login(vo);
+		ModelAndView mav = new ModelAndView("home/login_result","myresult",result);
 		return mav;
 	}
 }

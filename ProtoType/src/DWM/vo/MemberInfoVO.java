@@ -9,6 +9,11 @@ public class MemberInfoVO {
 	private String job;
 	private String job_locale;
 
+	public MemberInfoVO() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	public MemberInfoVO(MemberVO id, String nickname, String gender, int age, String locale, String job,
 			String job_locale) {
 		super();

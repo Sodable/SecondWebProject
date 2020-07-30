@@ -8,6 +8,11 @@ public class BoardVO {
 	private int view_count;
 	private String write_date;
 
+	public BoardVO() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	public BoardVO(int count, MemberVO id, String title, String body, int view_count, String write_date) {
 		super();
 		this.count = count;

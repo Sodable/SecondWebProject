@@ -13,7 +13,7 @@
 	<select id="selectMember" resultType="member">
 	</select>
 	
-	<select id="searchMember" parameterType="java.lang.String"
-	 resultType="member">
+	<select id="loginMember" parameterType="member" resultType="member">
+	select * from member where password= #{password} and id = #{id}
 	</select>
 </mapper>  

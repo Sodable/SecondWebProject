@@ -14,6 +14,10 @@ public class MemberBiz {
 	public String insert(MemberVO vo) {
 		return memberdao.insert(vo);
 	}
+
+	public String login(MemberVO vo) {
+		return memberdao.login(vo);
+	}
 	
 
 }

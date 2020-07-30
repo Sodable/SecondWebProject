@@ -5,6 +5,11 @@ public class FreeBoardVO {
 	private String fb_file;
 	private String fb_weather;
 
+	public FreeBoardVO() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	public FreeBoardVO(BoardVO board, String fb_file, String fb_weather) {
 		super();
 		this.board = board;

@@ -18,6 +18,6 @@
 		<input type="submit" value="등록"> 
 		<input type="reset" value="재작성">
 	</form>
-	<a href="/ProtoType/index.jsp">돌아가기</a>
+	<a href="/ProtoType/">돌아가기</a>
 </body>
 </html>

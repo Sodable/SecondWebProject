@@ -7,6 +7,11 @@ public class CalendarVO {
 	private int t_ranked;
 	private String c_weather;
 
+	public CalendarVO() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	public CalendarVO(String c_date, int f_ranked, int s_ranked, int t_ranked, String c_weather) {
 		super();
 		this.c_date = c_date;

@@ -6,6 +6,11 @@ public class BoardLogVO {
 	private String title;
 	private String body;
 
+	public BoardLogVO() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	public BoardLogVO(BoardVO board, String update_date, String title, String body) {
 		super();
 		this.board = board;

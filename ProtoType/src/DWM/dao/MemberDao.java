@@ -30,4 +30,19 @@ public class MemberDao {
 		return result;
 	}
 
+	public String login(MemberVO vo) {
+		String result = null;
+		MemberVO res = null;
+
+		try (SqlSession session = factory.openSession();) {
+			res = session.selectOne("member.loginMember", vo);
+			if (res != null) {
+				result = res.getName();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} 
+		return result;
+	}
+
 }

@@ -6,6 +6,11 @@ public class PhotoBoardVO {
 	private String pb_count;
 	private String pb_weather;
 
+	public PhotoBoardVO() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	public PhotoBoardVO(BoardVO board, String pb_file, String pb_count, String pb_weather) {
 		super();
 		this.board = board;
