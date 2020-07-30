@@ -18,14 +18,14 @@ public class FreeBoardDaoImpl extends JdbcDaoSupport implements FreeBoardDao, Fr
 		@Override
 		public FreeBoardVO mapRow(ResultSet rs, int rowNum) throws SQLException {
 			FreeBoardVO vo = new FreeBoardVO();
-			vo.setBody(rs.getString("BODY"));
-			vo.setCount(rs.getInt("COUNT"));
-			vo.setFb_file(rs.getString("FB_FILE"));
-			vo.setFb_weather(rs.getString("FB_WEATHER"));
-			vo.setId(rs.getString("ID"));
-			vo.setTitle(rs.getString("TITLE"));
-			vo.setView_count(rs.getInt("VIEW_COUNT"));
-			vo.setWrite_date(rs.getString("WRITE_DATE"));
+			vo.setBody(rs.getString("body"));
+			vo.setCount(rs.getInt("count"));
+			vo.setFb_file(rs.getString("fb_file"));
+			vo.setFb_weather(rs.getString("fb_weather"));
+			vo.setId(rs.getString("id"));
+			vo.setTitle(rs.getString("title"));
+			vo.setView_count(rs.getInt("view_count"));
+			vo.setWrite_date(rs.getString("write_date"));
 			return vo;
 		}
 
@@ -47,7 +47,7 @@ public class FreeBoardDaoImpl extends JdbcDaoSupport implements FreeBoardDao, Fr
 	@Override
 	public List<FreeBoardVO> list() {
 		RowMapper<FreeBoardVO> rowMapper= new FreeBoardRowMapper();
-		return super.getJdbcTemplate().query(freelist.toUpperCase(), rowMapper);
+		return super.getJdbcTemplate().query(freelist, rowMapper);
 	}
 
 
