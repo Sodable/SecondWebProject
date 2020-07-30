@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<meta http-equiv="Content-type" content="text/html; charset=UTF-8">
 <title>** 로그인 **</title>
 </head>
 <body>
@@ -12,7 +12,7 @@
 	ID : <input type="text" name="id"><br/>
 	PW : <input type="password" name="password"><br/>
 	<input type="submit" value="로그인">
-	<a href="/ProtoType/view/home/insert.jsp">회원 등록</a><br/>
+	<a href="/ProtoType/member/regi">회원 등록</a><br/>
 	<a href="/ProtoType/">돌아가기</a>
 </form>
 </body>
