@@ -15,10 +15,22 @@ public class MemberController {
 	@Autowired
 	private MemberBiz biz;
 	
+	@RequestMapping(path = "/regi")
+	public ModelAndView insert() {
+		ModelAndView mav = new ModelAndView("home/insert");
+		return mav;
+	}
+	
 	@RequestMapping(path = "/Insert.do")
 	public ModelAndView insert(MemberVO vo) {
 		String result=biz.insert(vo);		
 		ModelAndView mav = new ModelAndView("home/insert_result","myresult",result);
+		return mav;
+	}
+	
+	@RequestMapping(path = "/login")
+	public ModelAndView login() {
+		ModelAndView mav = new ModelAndView("home/login");
 		return mav;
 	}
 

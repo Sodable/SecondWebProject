@@ -29,7 +29,7 @@ CREATE TABLE BOARD (
 	TITLE VARCHAR2(100) NOT NULL, /* 제목 */
 	BODY VARCHAR2(500) NOT NULL, /* 내용 */
 	VIEW_COUNT NUMBER DEFAULT 0, /* 조회수 */
-	WRITE_DATE VARCHAR2(30) NOT NULL, /* 작성일 */
+	WRITE_DATE VARCHAR2(30) DEFAULT to_char(sysdate, 'YYYY-MM-DD HH:MI:SS') NOT NULL, /* 작성일 */
 	CONSTRAINT PK_BOARD PRIMARY KEY(COUNT,ID),
 	CONSTRAINT FK_MEMBER_TO_BOARD FOREIGN KEY(ID)
 		REFERENCES MEMBER (ID) ON DELETE CASCADE
@@ -90,9 +90,22 @@ END;
 /
 
 /* 게시판 글 번호 시퀀스*/
-
 CREATE SEQUENCE BOARD_count_seq
 INCREMENT BY 1
 START WITH 1
 NOCYCLE;
+
+/* 자유게시판 글 작성 프로시저*/ --시퀀스 연속 사용을 위해
+CREATE OR REPLACE PROCEDURE FREEBOARD_write_pr(
+id IN varchar2, title IN varchar2, body IN varchar2, file IN varchar2, weather IN varchar2
+)
+IS
+BEGIN
+
+insert into board(count,id,title,body,view_count) values(BOARD_count_seq.NEXTVAL,id,title,body,0);
+insert into free_board values(BOARD_count_seq.CURRVAL,id,file,weather);
+commit;	
+
+END;
+/
 
