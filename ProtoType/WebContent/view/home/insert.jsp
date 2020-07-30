@@ -8,7 +8,6 @@
 </head>
 <body>
 	<h3>** 회원 정보를 입력하세요 **</h3>
-	<!-- servlet에서 *.do로 url 맵핑, Controller로 이동한다. -->
 	<form action="/ProtoType/member/Insert.do" method="post">
 		아이디 : <input type="text" name="id"><br /> 
 		패스워드 : <input type="password" name="password"><br /> 

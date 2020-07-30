@@ -1,8 +1,12 @@
 package DWM.dao;
 
-import org.springframework.stereotype.Repository;
+import java.util.List;
 
-@Repository
-public class FreeBoardDao {
+import DWM.vo.FreeBoardVO;
 
+public interface FreeBoardDao {
+	
+	public int write(FreeBoardVO vo);
+	public List<FreeBoardVO> list();
+	
 }
