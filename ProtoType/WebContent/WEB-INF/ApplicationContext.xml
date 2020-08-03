@@ -14,10 +14,10 @@
 	<mvc:annotation-driven />
 	<context:component-scan base-package="DWM.biz" />
 	<context:component-scan base-package="DWM.dao" />
-	<context:component-scan base-package="mybatis"/>
+	<context:component-scan base-package="config"/>
 
 
-	<context:property-placeholder location="classpath:mybatis/jdbc.properties"/>
+	<context:property-placeholder location="classpath:config/jdbc.properties"/>
 	<!-- DB Connection, dbcp -->
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
@@ -40,10 +40,9 @@
 		<property name="dataSource" ref="dataSource" />
 		<property name="configLocation"
 			value="classpath:mybatis/mybatis-config.xml" />
-	
-	
-	
 	</bean>
+
+
 
 	<!-- ThreadSafe SqlSession - use this -->
 	<bean id="defaultSqlSession"
