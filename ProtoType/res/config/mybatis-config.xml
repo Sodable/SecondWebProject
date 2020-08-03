@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+    PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+	<properties resource="mybatis/jdbc.properties" />
+
+	<typeAliases>
+		<typeAlias alias="member" type="DWM.vo.MemberVO" />
+	</typeAliases>
+
+	<environments default="DWM">
+		<environment id="DWM">
+			<transactionManager type="JDBC" /> <!-- JDBC:커밋과 롤백처리수동/MANAGED : 자동 커밋 -->
+			<dataSource type="POOLED">	<!-- UNPOOLED: 매번 커넥션을 열고 닫음, POOLED: 한번만 열고 닫음, JNDI -->
+				<property name="driverClass" value="${driverClass}" />
+				<property name="url" value="${url}" />
+				<property name="username" value="${username}" />
+				<property name="password" value="${password}" />
+			</dataSource>
+		</environment>
+	</environments>
+
+
+	<mappers>
+		<mapper resource="user-mapping.xml" />
+	</mappers>
+
+</configuration>
+
+<!-- 현재 로그인만 mybatis로 매핑. (login : user-mapping.xml) 만약 여러개를 myBatis로 맵핑하고 
+	싶다면 ApplicationContext.xml에서 설정한다. [ApplicationContext.xml] <property name="mapperLocations" 
+	value="classpath:/mybatis/*.xml" /> https://bigfat.tistory.com/98 -->
+
+<!-- mybatis설정파일 https://lemontia.tistory.com/406 참고 -->

@@ -11,6 +11,8 @@
 	</insert>
 	
 	<select id="selectMember" resultType="member">
+	 SELECT user_name AS userNAME FROM member
+	 
 	</select>
 	
 	<select id="loginMember" parameterType="member" resultType="member">

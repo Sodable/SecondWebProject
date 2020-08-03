@@ -89,6 +89,8 @@
 			<artifactId>aspectjrt</artifactId>
 			<version>1.8.1</version>
 		</dependency>
+		<!-- 오라클 드라이버 설정 -->
+		
 	</dependencies>
 
 	<properties>
