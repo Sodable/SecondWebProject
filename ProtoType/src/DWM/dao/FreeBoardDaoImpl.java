@@ -60,5 +60,24 @@ public class FreeBoardDaoImpl extends JdbcDaoSupport implements FreeBoardDao, Fr
 		return super.getJdbcTemplate().query(freeviewbody, new Object[] {count}, rowMapper);
 	}
 
+	@Override
+	public int reWriteDo(FreeBoardVO vo) {
+		int res1 = 1;
+		try{
+			super.getJdbcTemplate().update("call FREEBOARD_rewrite_pr(?,?,?,?,?,?)", 
+				new Object[] {vo.getId(),vo.getTitle(),vo.getBody(),vo.getFb_file(),vo.getFb_weather(),vo.getCount()});
+		}catch(Exception e) {
+			e.printStackTrace();
+			res1=0;
+		}
+		
+		return res1;
+	}
+
+	@Override
+	public int deleteView(int count) {
+		return super.getJdbcTemplate().update(deleteview, new Object[] {count});
+	}
+
 
 }

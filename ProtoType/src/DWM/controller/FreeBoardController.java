@@ -53,5 +53,38 @@ public class FreeBoardController {
 		}
 		return mav;
 	}
+	
+	@RequestMapping(path="/rewriteview", method = RequestMethod.GET )
+	public ModelAndView reWrite(@Param(value = "count") int count) {
+		List<FreeBoardVO> body = freeboardbiz.viewbody(count);
+		ModelAndView mav = new ModelAndView("freeboard/rewrite","viewbody",body);
+		return mav;
+	}
+	
+	@RequestMapping(path="/rewrite.do", method = RequestMethod.POST)
+	public ModelAndView reWriteDo(@ModelAttribute FreeBoardVO vo) {
+		int res = freeboardbiz.reWriteDo(vo);
+		ModelAndView mav = null;
+		if(res>0) {
+			mav = viewbody(vo.getCount());
+		}else {
+			//예외 상황
+			mav = viewbody(vo.getCount());
+		}
+		return mav;
+	}
+	
+	@RequestMapping(path="/deleteview", method = RequestMethod.GET )
+	public ModelAndView deleteView(@Param(value = "count") int count) {
+		int res = freeboardbiz.deleteView(count);
+		ModelAndView mav = null;
+		if(res>0) {
+			mav = view();
+		}else {
+			//삭제 실패 예외처리
+			mav = view();
+		}
+		return mav;
+	}
 
 }

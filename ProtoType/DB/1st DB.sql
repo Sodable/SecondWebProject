@@ -109,3 +109,17 @@ commit;
 END;
 /
 
+/* 자유게시판 글 수정 프로시저*/
+CREATE OR REPLACE PROCEDURE FREEBOARD_rewrite_pr(
+id IN varchar2, mytitle IN varchar2, mybody IN varchar2, file IN varchar2, weather IN varchar2, mycount IN number
+)
+IS
+BEGIN
+
+update board set title = mytitle, body = mybody where count = mycount;
+update free_board set fb_file = file, fb_weather = weather where count = mycount;
+commit;	
+
+END;
+/
+

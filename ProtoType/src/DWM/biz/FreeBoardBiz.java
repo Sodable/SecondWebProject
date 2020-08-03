@@ -27,4 +27,12 @@ public class FreeBoardBiz {
 		return freeboarddao.viewbody(count);
 	}
 
+	public int reWriteDo(FreeBoardVO vo) {
+		return freeboarddao.reWriteDo(vo);
+	}
+
+	public int deleteView(int count) {
+		return freeboarddao.deleteView(count);
+	}
+
 }

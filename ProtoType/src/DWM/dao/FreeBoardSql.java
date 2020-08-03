@@ -14,4 +14,6 @@ public interface FreeBoardSql {
 			"on board.count = free_board.count \r\n" + 
 			"where board.count = ?\r\n" + 
 			"order by free_board.count desc";
+	
+	final String deleteview = "delete from board where count=?";
 }

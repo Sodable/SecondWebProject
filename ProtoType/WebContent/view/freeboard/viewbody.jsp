@@ -20,6 +20,9 @@
 <label>파일 첨부 : </label><%=viewbody.get(0).getFb_file() %><br><!-- 새창 띄워서 입력? -->
 <label>내용</label><br>
 <textarea cols="100" rows="10" name="body"><%=viewbody.get(0).getBody() %></textarea><br/>
+<a href="/ProtoType/freeboard/rewriteview?count=<%=viewbody.get(0).getCount() %>">글 수정</a> &nbsp;
+<!-- 글 삭제시 확인 받아보기 ? -->
+<a href="/ProtoType/freeboard/deleteview?count=<%=viewbody.get(0).getCount() %>">글 삭제</a><br>
 <a href="/ProtoType/freeboard/view">자유게시판으로 돌아가기</a>
 </body>
 </html>
