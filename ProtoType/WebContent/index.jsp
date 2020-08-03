@@ -37,6 +37,7 @@
 			<ul class="nav navbar-nav">
 				<li class="active"><a href="index.jsp">메인</a></li>
 				<li><a href="/ProtoType/freeboard/view">자유게시판</a></li>
+				<li><a href="/ProtoType/photoboard/view">포토게시판</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li class="dropdown"><a href="#" class="dropdown-toggle"

@@ -29,7 +29,11 @@
 	<bean id="freeBoardDaoImpl" class="DWM.dao.FreeBoardDaoImpl">
 		<property name="dataSource" ref="dataSource"/>
 	</bean>
-		
+	
+	<bean id="photoBoardDaoImpl" class="DWM.dao.PhotoBoardDaoImpl">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+	
 	<!-- myBatis -->
 	<bean id="sqlSessionFactory"
 		class="org.mybatis.spring.SqlSessionFactoryBean">

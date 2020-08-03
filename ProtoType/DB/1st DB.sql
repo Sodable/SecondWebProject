@@ -123,3 +123,17 @@ commit;
 END;
 /
 
+/* 포토게시판 글 작성 프로시저*/ --시퀀스 연속 사용을 위해
+CREATE OR REPLACE PROCEDURE PHOTOBOARD_write_pr(
+id IN varchar2, title IN varchar2, file IN varchar2, weather IN varchar2
+)
+IS
+BEGIN
+
+insert into board(count,id,title,body,view_count) values(BOARD_count_seq.NEXTVAL,id,title,title,0);
+insert into photo_board values(BOARD_count_seq.CURRVAL,id,file,0,weather);
+commit;	
+
+END;
+/
+
