@@ -14,7 +14,7 @@
 		<environment id="DWM">
 			<transactionManager type="JDBC" /> <!-- JDBC:커밋과 롤백처리수동/MANAGED : 자동 커밋 -->
 			<dataSource type="POOLED">	<!-- UNPOOLED: 매번 커넥션을 열고 닫음, POOLED: 한번만 열고 닫음, JNDI -->
-				<property name="driverClass" value="${driverClass}" />
+				<property name="driverClassName" value="${driverClassName}" />
 				<property name="url" value="${url}" />
 				<property name="username" value="${username}" />
 				<property name="password" value="${password}" />

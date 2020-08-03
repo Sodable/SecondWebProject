@@ -14,19 +14,20 @@
 	<mvc:annotation-driven />
 	<context:component-scan base-package="DWM.biz" />
 	<context:component-scan base-package="DWM.dao" />
-	<context:component-scan base-package="config"/>
+	<context:component-scan base-package="config" />
 
 
-	<context:property-placeholder location="classpath:config/jdbc.properties"/>
-	<!-- DB Connection, dbcp -->
+	<context:property-placeholder
+		location="/WEB-INF/*.properties" />
+
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-	<property name="driverClass" value="${driverClass}" />
-				<property name="url" value="${url}" />
-				<property name="username" value="${username}" />
-				<property name="password" value="${password}" />
+		<property name="driverClassName" value="${driverClassName}" />
+		<property name="url" value="${url}" />
+		<property name="username" value="${username}" />
+		<property name="password" value="${password}" />
 	</bean>
-	
+
 	<bean id="transactionManager"
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<constructor-arg ref="dataSource" />
@@ -39,12 +40,11 @@
 		class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<property name="configLocation"
-			value="classpath:mybatis/mybatis-config.xml" />
+			value="classpath:config/mybatis-config.xml" />
 	</bean>
 
 
 
-	<!-- ThreadSafe SqlSession - use this -->
 	<bean id="defaultSqlSession"
 		class="org.mybatis.spring.SqlSessionTemplate"
 		destroy-method="clearCache">
@@ -62,5 +62,4 @@
 
 
 
-<!-- 	<property name="mapperLocations"
-			value="classpath*:mybatis/**-mapping.xml"></property> -->
+<!-- <property name="mapperLocations" value="classpath*:mybatis/**-mapping.xml"></property> -->
