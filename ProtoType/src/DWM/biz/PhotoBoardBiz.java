@@ -15,8 +15,8 @@ public class PhotoBoardBiz {
 	@Autowired
 	private PhotoBoardDao photoboarddao;
 
-	public List<PhotoBoardVO> list(String date) {
-		return photoboarddao.list(date);
+	public List<PhotoBoardVO> list(String date, int pagenum) {
+		return photoboarddao.list(date,pagenum);
 	}
 
 	public int writeDo(PhotoBoardVO vo) {

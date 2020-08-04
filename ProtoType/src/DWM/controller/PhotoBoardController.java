@@ -5,77 +5,96 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import DWM.biz.PhotoBoardBiz;
 import DWM.vo.PhotoBoardVO;
 
-
 @Controller
 @RequestMapping("/photoboard")
 public class PhotoBoardController {
-	
+
 	@Autowired
 	private PhotoBoardBiz photoboardbiz;
-	
-	@RequestMapping(path="/view")
-	public ModelAndView view(@Param("date") String date) {
-		List<PhotoBoardVO> photolist = photoboardbiz.list(date);
+
+	@RequestMapping(path = "/view")
+	public ModelAndView view(@RequestParam("date") String date, @RequestParam("pagenum") int pagenum) {
+		if(pagenum==0) {
+			pagenum=1;
+		}
+		
+		if(date.equals("today")) {
+			Date datenow = new Date();
+			SimpleDateFormat today = new SimpleDateFormat("yyyy-MM-dd");
+			date = today.format(datenow);
+		}
+		
+		int itemnum=0;
+		List<PhotoBoardVO> photolist = photoboardbiz.list(date,pagenum);
+		System.out.println(photolist.isEmpty());
+		if(!photolist.isEmpty()) {
+			itemnum = photolist.size();
+		}
+//		long itemnum = photoboardbiz.getItemnum(date);
+		
 		ModelAndView mav = new ModelAndView("photoboard/main");
 		mav.addObject("photolist", photolist);
+		mav.addObject("itemnum", itemnum);
+		mav.addObject("pagenum", pagenum);
+		mav.addObject("date", date);
 		return mav;
 	}
-	
-	@RequestMapping(path="/write")
+
+	@RequestMapping(path = "/write")
 	public ModelAndView write(@ModelAttribute("photoBoardVO") PhotoBoardVO photoBoardVO) {
 		ModelAndView mav = new ModelAndView("photoboard/write");
 		return mav;
 	}
-	
-	@RequestMapping(path="/write.do", method = RequestMethod.POST)
+
+	@RequestMapping(path = "/write.do", method = RequestMethod.POST)
 	public ModelAndView writeDo(@ModelAttribute("photoBoardVO") PhotoBoardVO photoBoardVO) {
 		MultipartFile file = photoBoardVO.getImagefile();
-		System.out.println(photoBoardVO.getTitle());
-		System.out.println(file.getOriginalFilename()+":"+file.getSize());
-		String filename=file.getOriginalFilename();
-		
-		InputStream inputStream =null;
+		String filename = file.getOriginalFilename();
+
+		InputStream inputStream = null;
 		OutputStream outputStream = null;
-		
+
 		try {
-			inputStream=file.getInputStream();
+			inputStream = file.getInputStream();
 			String path = "C:\\Users\\Playdata\\git\\SecondWebProject\\ProtoType\\WebContent\\upload\\photoboard";
-			
+
 			File newFile = new File(path + "/" + filename);
-			if(!newFile.exists()) {
+			if (!newFile.exists()) {
 				newFile.createNewFile();
 			}
-			
+
 			outputStream = new FileOutputStream(newFile);
-			int read=0;
-			byte[] b=new byte[(int)file.getSize()];
-			while((read=inputStream.read(b))!=-1) {
-				outputStream.write(b,0,read);	
+			int read = 0;
+			byte[] b = new byte[(int) file.getSize()];
+			while ((read = inputStream.read(b)) != -1) {
+				outputStream.write(b, 0, read);
 			}
-		}catch(IOException e) {
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		photoBoardVO.setPb_file(filename);
 		int res = photoboardbiz.writeDo(photoBoardVO);
 		ModelAndView mav = null;
-		if(res>0) {
-			mav = view(photoBoardVO.getWrite_date());
-		}else {
+		if (res > 0) {
+			mav = view("today",1);
+		} else {
 			mav = new ModelAndView("photoboard/write");
 		}
 		return mav;
@@ -128,6 +147,5 @@ public class PhotoBoardController {
 //		}
 //		return mav;
 //	}
-
 
 }
