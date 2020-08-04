@@ -24,7 +24,7 @@
 
 
 	<mappers>
-		<mapper resource="user-mapping.xml" />
+		<mapper class="mapper.UserMapper" />
 	</mappers>
 
 </configuration>
