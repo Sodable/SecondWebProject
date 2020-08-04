@@ -16,9 +16,18 @@
 	<context:component-scan base-package="DWM.dao" />
 	<context:component-scan base-package="config" />
 
+	<!-- <bean id="propertyConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>/WEB-INF/jdbc.properties</value>
+			</list>
+		</property>
+	</bean> -->
+
 
 	<context:property-placeholder
-		location="/WEB-INF/*.properties" />
+		location="classpath:jdbc.properties" />
 
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
