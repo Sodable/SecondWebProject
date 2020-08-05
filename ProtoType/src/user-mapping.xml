@@ -10,6 +10,18 @@
 		values(#{id},#{password},#{name},#{tel},#{email})
 	</insert>
 	
+	<insert id="insertMemberInfo" parameterType="member">
+		insert into member_info(id)
+		values(#{id})
+	</insert>
+	
+	<insert id="updateMemberInfo" parameterType="memberinfo">
+		update member_info 
+		set nickname = #{nickname}, gender = #{gender}, age = #{age}, 
+		locale = #{locale}, job = #{job}, job_locale = #{locale}
+		where id = #{id}
+	</insert>
+
 	<select id="selectMember" resultType="member">
 	</select>
 	
@@ -17,3 +29,4 @@
 	select * from member where password= #{password} and id = #{id}
 	</select>
 </mapper>  
+

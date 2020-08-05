@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import DWM.dao.MemberDao;
+import DWM.vo.MemberInfoVO;
 import DWM.vo.MemberVO;
 
 @Service
@@ -17,6 +18,10 @@ public class MemberBiz {
 
 	public String login(MemberVO vo) {
 		return memberdao.login(vo);
+	}
+
+	public String insert_more(MemberInfoVO vo) {
+		return memberdao.insert_more(vo);
 	}
 	
 

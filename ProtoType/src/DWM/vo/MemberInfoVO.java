@@ -1,11 +1,14 @@
 package DWM.vo;
 
 public class MemberInfoVO {
-	private MemberVO id;
+	private String id;
 	private String nickname;
 	private String gender;
 	private int age;
 	private String locale;
+	private String locale_top;
+	private String locale_mdl;
+	private String locale_leaf;
 	private String job;
 	private String job_locale;
 
@@ -14,23 +17,11 @@ public class MemberInfoVO {
 		// TODO Auto-generated constructor stub
 	}
 
-	public MemberInfoVO(MemberVO id, String nickname, String gender, int age, String locale, String job,
-			String job_locale) {
-		super();
-		this.id = id;
-		this.nickname = nickname;
-		this.gender = gender;
-		this.age = age;
-		this.locale = locale;
-		this.job = job;
-		this.job_locale = job_locale;
-	}
-
-	public MemberVO getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(MemberVO id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
@@ -64,6 +55,30 @@ public class MemberInfoVO {
 
 	public void setLocale(String locale) {
 		this.locale = locale;
+	}
+	
+	public String getLocale_top() {
+		return locale_top;
+	}
+
+	public void setLocale_top(String locale_top) {
+		this.locale_top = locale_top;
+	}
+
+	public String getLocale_mdl() {
+		return locale_mdl;
+	}
+
+	public void setLocale_mdl(String locale_mdl) {
+		this.locale_mdl = locale_mdl;
+	}
+
+	public String getLocale_leaf() {
+		return locale_leaf;
+	}
+
+	public void setLocale_leaf(String locale_leaf) {
+		this.locale_leaf = locale_leaf;
 	}
 
 	public String getJob() {

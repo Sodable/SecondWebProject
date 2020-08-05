@@ -21,10 +21,27 @@
 		<property name="username" value="DWM" />
 		<property name="password" value="admin1234" />
 	</bean>
+	
 	<bean id="transactionManager"
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<constructor-arg ref="dataSource" />
 	</bean>
+	
+	<!-- 2,3번으로 db연결 후 crud 명령의 객체를 호출 한다 -->
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<constructor-arg>
+			<ref bean="dataSource"/>
+		</constructor-arg>
+	</bean>
+	
+	<!-- query 연동할 함수, 프로시저 등등을 호출 할 수 있다. -->
+	<bean class="org.springframework.jdbc.core.simple.SimpleJdbcCall">
+		<constructor-arg>
+			<ref bean="jdbcTemplate"/>
+		</constructor-arg>
+	</bean>
+	
+	
 	
 	<bean id="freeBoardDaoImpl" class="DWM.dao.FreeBoardDaoImpl">
 		<property name="dataSource" ref="dataSource"/>
