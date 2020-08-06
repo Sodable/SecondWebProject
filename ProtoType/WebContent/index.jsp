@@ -24,8 +24,10 @@
 	<!-- ---------------------네비게이션 시작--------------------- -->
 			<ul class="nav navbar-nav">
 				<li class="active"><a href="index.jsp">메인</a></li>
+				<li><a href="/ProtoType/weather/now?id=test">현재 날씨 페이지</a></li>
+				<li><a href="/ProtoType/weather/future?id=test">날씨 예보 페이지</a></li>
 				<li><a href="/ProtoType/freeboard/view">자유게시판</a></li>
-				<li><a href="/ProtoType/photoboard/view?date=today&pagenum=1">포토게시판</a></li>
+				<li><a href="/ProtoType/photoboard/view?date=today&pagenum=1" >포토게시판</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 						<li class="active"><a href="/ProtoType/member/login">로그인</a></li>

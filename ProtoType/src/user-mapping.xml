@@ -22,7 +22,8 @@
 		where id = #{id}
 	</insert>
 
-	<select id="selectMember" resultType="member">
+	<select id="selectMemberInfo" resultType="memberinfo">
+		select * from member_info where id = #{id}
 	</select>
 	
 	<select id="loginMember" parameterType="member" resultType="member">

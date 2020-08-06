@@ -23,6 +23,10 @@ public class MemberBiz {
 	public String insert_more(MemberInfoVO vo) {
 		return memberdao.insert_more(vo);
 	}
+
+	public MemberInfoVO getLocale(String id) {
+		return memberdao.getLocale(id);
+	}
 	
 
 }

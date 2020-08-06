@@ -74,4 +74,18 @@ public class MemberDao {
 		return result;
 	}
 
+	public MemberInfoVO getLocale(String id) {
+		MemberInfoVO vo = new MemberInfoVO();
+		vo.setId(id);
+		MemberInfoVO res = null;
+		
+		try (SqlSession session = factory.openSession();) {
+			res = session.selectOne("member.selectMemberInfo", vo);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return res;
+	}
+
 }
