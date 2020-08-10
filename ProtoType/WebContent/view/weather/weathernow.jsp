@@ -10,6 +10,10 @@
 </head>
 <body>
 <h1>**현재 날씨**</h1>
+		<%String loginid =(String) session.getAttribute("id");%>
+	<p>
+		로그인 id :
+		<%=loginid%></p>
 <hr>
 <%
 for (int i = 0; i < weather.size(); i++) {

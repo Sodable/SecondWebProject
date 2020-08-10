@@ -22,11 +22,17 @@ public class PhotoBoardDaoImpl extends JdbcDaoSupport implements PhotoBoardDao, 
 			PhotoBoardVO vo = new PhotoBoardVO();
 			vo.setCount(rs.getInt("count"));
 			vo.setId(rs.getString("id"));
-			vo.setTitle(rs.getString("title"));
+			try {
 			vo.setPb_count(rs.getString("pb_count"));
-			vo.setWrite_date(rs.getString("write_date"));
 			vo.setPb_file(rs.getString("pb_file"));
 			vo.setPb_weather(rs.getString("pb_weather"));
+			}catch(Exception e) {
+			}
+			try {
+			vo.setWrite_date(rs.getString("write_date"));
+			vo.setTitle(rs.getString("title"));
+			}catch(Exception e) {
+			}
 			return vo;
 		}
 
@@ -35,7 +41,7 @@ public class PhotoBoardDaoImpl extends JdbcDaoSupport implements PhotoBoardDao, 
 	@Override
 	public List<PhotoBoardVO> list(String date,int pagenum) {
 		RowMapper<PhotoBoardVO> rowMapper= new PhotoBoardRowMapper();
-		System.out.println(date);
+//		System.out.println(date);
 		return super.getJdbcTemplate().query(selectall,new Object[] {String.valueOf(date+"%")}, rowMapper);
 	}
 
@@ -51,6 +57,24 @@ public class PhotoBoardDaoImpl extends JdbcDaoSupport implements PhotoBoardDao, 
 		}
 		
 		return res1;
+	}
+
+	@Override
+	public int recommand(int count) {
+		RowMapper<PhotoBoardVO> rowMapper= new PhotoBoardRowMapper();
+		int res = 0;
+		try {
+			List<PhotoBoardVO> list = super.getJdbcTemplate().query(getpbcount,new Object[] {count}, rowMapper);
+			PhotoBoardVO vo = list.get(0);
+			System.out.println("증가 전 추천수 : "+vo.getPb_count());
+			int pbcountint = Integer.parseInt(vo.getPb_count());
+			pbcountint++;
+			System.out.println("증가 후 추천수 : "+Integer.toString(pbcountint));
+			res = super.getJdbcTemplate().update(raisepbcount,new Object[] {Integer.toString(pbcountint),count});
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return res;
 	}
 
 }

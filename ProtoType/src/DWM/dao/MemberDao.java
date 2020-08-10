@@ -1,12 +1,11 @@
 package DWM.dao;
 
-import java.sql.SQLIntegrityConstraintViolationException;
-
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import DWM.mapper.UserMapper;
 import DWM.vo.MemberInfoVO;
 import DWM.vo.MemberVO;
 
@@ -20,8 +19,10 @@ public class MemberDao {
 		String result = null;
 
 		try (SqlSession session = factory.openSession();) {
-			int n = session.insert("member.insertMember", vo);
-			int n2 = session.insert("member.insertMemberInfo", vo);
+			UserMapper mapper = session.getMapper(UserMapper.class);
+			
+			int n = mapper.insertMember(vo);
+			int n2 = mapper.insertMemberInfo(vo.getId());
 			if (n > 0) {
 				if (!vo.getName().equals(null)) {
 					result = vo.getName();
@@ -43,9 +44,10 @@ public class MemberDao {
 		MemberVO res = null;
 
 		try (SqlSession session = factory.openSession();) {
-			res = session.selectOne("member.loginMember", vo);
+			UserMapper mapper = session.getMapper(UserMapper.class);
+			res = mapper.loginMember(vo);
 			if (res != null) {
-				result = res.getName();
+				result = res.getId();
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -57,7 +59,9 @@ public class MemberDao {
 		String result = null;
 
 		try (SqlSession session = factory.openSession();) {
-			int n = session.update("member.updateMemberInfo", vo);
+			UserMapper mapper = session.getMapper(UserMapper.class);
+			
+			int n = mapper.updateMemberInfo(vo);
 			if (n > 0) {
 				if (!vo.getNickname().equals(null)) {
 					result = vo.getNickname();
@@ -75,12 +79,12 @@ public class MemberDao {
 	}
 
 	public MemberInfoVO getLocale(String id) {
-		MemberInfoVO vo = new MemberInfoVO();
-		vo.setId(id);
 		MemberInfoVO res = null;
 		
 		try (SqlSession session = factory.openSession();) {
-			res = session.selectOne("member.selectMemberInfo", vo);
+			UserMapper mapper = session.getMapper(UserMapper.class);
+			
+			res = mapper.selectMemberInfo(id);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

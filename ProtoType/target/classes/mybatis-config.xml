@@ -4,13 +4,8 @@
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
   
   <configuration>
-  	<typeAliases>
-  		<typeAlias alias="member" type="DWM.vo.MemberVO"/>
-  		<typeAlias alias="memberinfo" type="DWM.vo.MemberInfoVO"/>
-  	</typeAliases>
-  	
   	<mappers>
-  		<mapper resource="user-mapping.xml"/>
+  		<mapper class="DWM.mapper.UserMapper"/>
   	</mappers>
   </configuration>
 

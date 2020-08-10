@@ -9,9 +9,11 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -32,7 +34,7 @@ public class PhotoBoardController {
 	private PhotoBoardBiz photoboardbiz;
 	@Autowired
 	private MemberBiz memberbiz ;
-	private MyAction myaction;
+	private MyAction myaction = new MyAction();
 
 	@RequestMapping(path = "/view")
 	public ModelAndView view(@RequestParam("date") String date, @RequestParam("pagenum") int pagenum) {
@@ -48,7 +50,7 @@ public class PhotoBoardController {
 
 		int itemnum = 0;
 		List<PhotoBoardVO> photolist = photoboardbiz.list(date, pagenum);
-		System.out.println(photolist.isEmpty());
+//		System.out.println(photolist.isEmpty());
 		if (!photolist.isEmpty()) {
 			itemnum = photolist.size();
 		}
@@ -62,8 +64,8 @@ public class PhotoBoardController {
 		return mav;
 	}
 
-	@RequestMapping(path = "/write")
-	public ModelAndView write(@ModelAttribute("photoBoardVO") PhotoBoardVO photoBoardVO, String id) {
+	@RequestMapping(path = "/write", method = RequestMethod.POST)
+	public ModelAndView write(@ModelAttribute("photoBoardVO") PhotoBoardVO photoBoardVO,@RequestParam("id") String id) {
 		// -- input date 셋팅
 		String[] input = new String[3];
 		Date datenow = new Date();
@@ -71,11 +73,11 @@ public class PhotoBoardController {
 		input[0] = sdf.format(datenow).trim();
 //		System.out.println(id);
 		MemberInfoVO vo = memberbiz.getLocale(id);
-		input[1] = vo.getLocale().split(" ")[3].trim();
+		input[1] = vo.getLocale().split(" ")[3].trim();	
 		input[2] = vo.getLocale().split(" ")[4].trim();
 		// -- input date 셋팅
 
-		System.out.println("date : " + input[0] + " x : " + input[1] + " y : " + input[2]);
+//		System.out.println("date : " + input[0] + " x : " + input[1] + " y : " + input[2]);
 		List<String[]> weather = myaction.getWeatherNow(input);
 
 		ModelAndView mav = new ModelAndView("photoboard/write","weather",weather);
@@ -118,6 +120,17 @@ public class PhotoBoardController {
 			mav = new ModelAndView("photoboard/write");
 		}
 		return mav;
+	}
+	
+	@RequestMapping(path="/recommand", method= RequestMethod.GET)
+	public ModelAndView recommand(@RequestParam("date") String date, @RequestParam("pagenum") int pagenum, @RequestParam("count") int count) {
+		int res = photoboardbiz.recommand(count);
+		if(res>0) {
+			//성공 시
+		}else {
+			//실패 시
+		}
+		return view(date,pagenum);
 	}
 
 }

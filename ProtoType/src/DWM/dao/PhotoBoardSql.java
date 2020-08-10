@@ -6,4 +6,6 @@ public interface PhotoBoardSql {
 			"on board.count = photo_board.count " + 
 			"where write_date like ?  " + 
 			"order by photo_board.count desc";
+	final String getpbcount = "select * from photo_board where count = ?";
+	final String raisepbcount = "update photo_board set pb_count = ? where count = ?";
 }

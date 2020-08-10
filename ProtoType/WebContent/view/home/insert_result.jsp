@@ -16,7 +16,7 @@
 <c:if test="${empty myresult }">
 	이미 존재하거나 잘못 입력하셨습니다.<br>
 	다시 입력해 주세요<br>
-	<a href="/ProtoType/insert.jsp">다시 입력</a>
+	<a href="/ProtoType/member/regi">다시 입력</a>
 </c:if>
 
 </body>

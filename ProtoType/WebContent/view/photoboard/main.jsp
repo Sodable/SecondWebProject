@@ -7,13 +7,17 @@
 <head>
 <meta http-equiv="Content-type" content="text/html; charset=UTF-8">
 <title>**포토게시판**</title>
+		<%String loginid =(String) session.getAttribute("id");%>
+	<p>
+		로그인 id :
+		<%=loginid%></p>
 <% // 이부분을 컨트롤러에서 get으로 보내주면 검색하기 편할듯 
 List<PhotoBoardVO> photolist = (List<PhotoBoardVO>) request.getAttribute("photolist");
 String date = (String) request.getAttribute("date");
 int pagenum = (int) request.getAttribute("pagenum"); // 입력된 페이지 , 컨트롤러에서 디폴트로 1
 int itemnum = (int) request.getAttribute("itemnum"); // 게시물 총 갯수 받아오기
-System.out.println("pagenum : "+pagenum);
-System.out.println("itemnum : "+itemnum);
+//System.out.println("pagenum : "+pagenum);
+//System.out.println("itemnum : "+itemnum);
 int totalpage = (int) itemnum/12 + 1;
 int pageflag = (int) (pagenum-1)/5+1;
 if(!photolist.isEmpty()){
@@ -25,9 +29,10 @@ if(!photolist.isEmpty()){
 </head>
 <body>
 <h1> ** 포토 게시판 **</h1>
+
 <hr>
-<%=date%>&nbsp;TOP&nbsp;3<br>
 		<!-- 데일리 탑3 부분 -->
+<%=date%>&nbsp;TOP&nbsp;3<br>
 <table border="0">
 <tr>
 <%for(int i = 0 ; i < 3 ; i++) {%>
@@ -35,29 +40,26 @@ if(!photolist.isEmpty()){
 <%} %>
 </tr>
 </table>
+
 <hr>
-		<!-- 데일리 4X3 포맷으로 12개 마다 페이지 넘기기 -->
+<!-- 데일리 4X3 포맷으로 12개 마다 페이지 넘기기 -->
 <table border="0">
 <%for(int i = 0 ; i < photolist.size() ; i++){ 
 if(i%4==0){%>
 <tr>
 <%} %>
-<td><img src="/ProtoType/upload/photoboard/<%=photolist.get(i).getPb_file().trim()%>" 
-title="<%=photolist.get(i).getPb_file().trim()%>" 
-alt="" width="100px" height="100px" onclick="">
+	<!-- 각 게시물 정보 -->
+	<td><img src="/ProtoType/upload/photoboard/<%=photolist.get(i).getPb_file().trim()%>" 
+	title="<%=photolist.get(i).getPb_file().trim()%>" 
+	alt="" width="100px" height="100px" onclick=""><br>
+	닉네임(<%=photolist.get(i).getId() %>)<br>
+	<a href="/ProtoType/photoboard/recommand?date=<%=date %>&pagenum=<%=pagenum %>&count=<%=photolist.get(i).getCount() %>">추천 하기</a><br>
+	추천수 : <%=photolist.get(i).getPb_count() %>
+	</td>
 <%if(i%4==3){ %>
 </tr>
 <%}} %>
 </table>
-<%-- <table border="0">
-<%for(int i = 0 ; i < 3 ; i++){ %>
-<tr>
-<%for(int j = 0 ; j < 4 ; j++){ %>
-<td><%=(pagenum-1)*12 + i*4+j+1 %></td>
-<%} %>
-</tr>
-<%} %>
-</table> --%>
 
 <!-- 페이지 넘기는 코드 -->
 <%if(pageflag>1){%>
@@ -70,7 +72,8 @@ alt="" width="100px" height="100px" onclick="">
 <a href="/ProtoType/photoboard/view?date=today&pagenum=<%=(pagenum-1)/5*5+6%>">다음</a>
 <%} %>
 <hr>
-<form action="/ProtoType/photoboard/write" method="get">
+<form action="/ProtoType/photoboard/write" method="post">
+	<input type="text" name="id" value="<%=loginid %>" hidden="true"/>
 <input type="submit" value="글 작성"/>
 </form>
 

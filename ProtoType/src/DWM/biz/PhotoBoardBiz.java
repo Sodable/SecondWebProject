@@ -23,4 +23,8 @@ public class PhotoBoardBiz {
 		return photoboarddao.writeDo(vo);
 	}
 
+	public int recommand(int count) {
+		return photoboarddao.recommand(count);
+	}
+
 }

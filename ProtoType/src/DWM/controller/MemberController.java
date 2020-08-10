@@ -14,7 +14,6 @@ import org.springframework.web.servlet.ModelAndView;
 import DWM.action.MyAction;
 import DWM.biz.MemberBiz;
 import DWM.validate.MemberValidator;
-import DWM.validate.login;
 import DWM.vo.MemberInfoVO;
 import DWM.vo.MemberVO;
 
@@ -63,24 +62,26 @@ public class MemberController {
 	}
 
 	@RequestMapping(path = "/login")
-	public ModelAndView login() {
-		ModelAndView mav = new ModelAndView("home/login");
+	public ModelAndView login(@ModelAttribute MemberVO login) {
+		ModelAndView mav = new ModelAndView("home/login","login",login);
 		return mav;
 	}
 
 	@RequestMapping(path = "/login.do", method = RequestMethod.POST)
-	public ModelAndView login(@ModelAttribute("login") login login, BindingResult result) {
+	public ModelAndView login(@ModelAttribute("login") MemberVO login, BindingResult result) {
 		//1. 유효성 검사
 		memberValidator.validate(login, result);
 		if(result.hasErrors()) {
-			return new ModelAndView("upload/uploadForm");
+			return new ModelAndView("home/login","login",login);
 		}
 		
-		MemberVO vo = new MemberVO();
-		vo.setId(login.getId());
-		vo.setPassword(login.getPassword());
-		String resultid = biz.login(vo);
+		String resultid = biz.login(login);
 		ModelAndView mav = new ModelAndView("home/login_result", "myresult", resultid);
 		return mav;
+	}
+	
+	@RequestMapping(path = "/logout")
+	public ModelAndView logout() {
+		return new ModelAndView("home/logout");
 	}
 }

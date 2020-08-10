@@ -36,7 +36,7 @@ public class WeatherController {
 		input[2]=vo.getLocale().split(" ")[4].trim();
 		// -- input date ¼ÂÆÃ
 		
-		System.out.println("date : "+input[0]+" x : "+input[1]+" y : "+input[2]);
+//		System.out.println("date : "+input[0]+" x : "+input[1]+" y : "+input[2]);
 		List<String[]> weather = myaction.getWeatherNow(input);
 		
 		ModelAndView mav = new ModelAndView("weather/weathernow","weather",weather);

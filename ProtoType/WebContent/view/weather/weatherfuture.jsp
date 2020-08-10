@@ -10,6 +10,10 @@
 </head>
 <body>
 <h1>**날씨 예보**</h1>
+		<%String loginid =(String) session.getAttribute("id");%>
+	<p>
+		로그인 id :
+		<%=loginid%></p>
 <hr>
 <%
 int cnt = 0;

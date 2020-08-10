@@ -8,5 +8,6 @@ public interface PhotoBoardDao {
 
 	public List<PhotoBoardVO> list(String date, int pagenum);
 	public int writeDo(PhotoBoardVO vo);
+	public int recommand(int count);
 
 }
