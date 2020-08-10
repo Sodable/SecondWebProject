@@ -18,7 +18,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import DWM.action.MyAction;
+import DWM.biz.MemberBiz;
 import DWM.biz.PhotoBoardBiz;
+import DWM.vo.MemberInfoVO;
 import DWM.vo.PhotoBoardVO;
 
 @Controller
@@ -27,27 +30,30 @@ public class PhotoBoardController {
 
 	@Autowired
 	private PhotoBoardBiz photoboardbiz;
+	@Autowired
+	private MemberBiz memberbiz ;
+	private MyAction myaction;
 
 	@RequestMapping(path = "/view")
 	public ModelAndView view(@RequestParam("date") String date, @RequestParam("pagenum") int pagenum) {
-		if(pagenum==0) {
-			pagenum=1;
+		if (pagenum == 0) {
+			pagenum = 1;
 		}
-		
-		if(date.equals("today")) {
+
+		if (date.equals("today")) {
 			Date datenow = new Date();
 			SimpleDateFormat today = new SimpleDateFormat("yyyy-MM-dd");
 			date = today.format(datenow);
 		}
-		
-		int itemnum=0;
-		List<PhotoBoardVO> photolist = photoboardbiz.list(date,pagenum);
+
+		int itemnum = 0;
+		List<PhotoBoardVO> photolist = photoboardbiz.list(date, pagenum);
 		System.out.println(photolist.isEmpty());
-		if(!photolist.isEmpty()) {
+		if (!photolist.isEmpty()) {
 			itemnum = photolist.size();
 		}
 //		long itemnum = photoboardbiz.getItemnum(date);
-		
+
 		ModelAndView mav = new ModelAndView("photoboard/main");
 		mav.addObject("photolist", photolist);
 		mav.addObject("itemnum", itemnum);
@@ -57,8 +63,22 @@ public class PhotoBoardController {
 	}
 
 	@RequestMapping(path = "/write")
-	public ModelAndView write(@ModelAttribute("photoBoardVO") PhotoBoardVO photoBoardVO) {
-		ModelAndView mav = new ModelAndView("photoboard/write");
+	public ModelAndView write(@ModelAttribute("photoBoardVO") PhotoBoardVO photoBoardVO, String id) {
+		// -- input date 셋팅
+		String[] input = new String[3];
+		Date datenow = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		input[0] = sdf.format(datenow).trim();
+//		System.out.println(id);
+		MemberInfoVO vo = memberbiz.getLocale(id);
+		input[1] = vo.getLocale().split(" ")[3].trim();
+		input[2] = vo.getLocale().split(" ")[4].trim();
+		// -- input date 셋팅
+
+		System.out.println("date : " + input[0] + " x : " + input[1] + " y : " + input[2]);
+		List<String[]> weather = myaction.getWeatherNow(input);
+
+		ModelAndView mav = new ModelAndView("photoboard/write","weather",weather);
 		return mav;
 	}
 
@@ -93,59 +113,11 @@ public class PhotoBoardController {
 		int res = photoboardbiz.writeDo(photoBoardVO);
 		ModelAndView mav = null;
 		if (res > 0) {
-			mav = view("today",1);
+			mav = view("today", 1);
 		} else {
 			mav = new ModelAndView("photoboard/write");
 		}
 		return mav;
 	}
-//	
-//	
-//	@RequestMapping(path="/viewbody",method = RequestMethod.GET)
-//	public ModelAndView viewbody(@Param(value = "count") int count) {
-//		List<FreeBoardVO> body = freeboardbiz.viewbody(count);
-//		ModelAndView mav = new ModelAndView("freeboard/viewbody","viewbody",body);
-//		return mav;
-//	}
-//	
-//	@RequestMapping(path="/write")
-//	public ModelAndView write() {
-//		ModelAndView mav = new ModelAndView("freeboard/write");
-//		return mav;
-//	}
-//
-
-//	@RequestMapping(path="/rewriteview", method = RequestMethod.GET )
-//	public ModelAndView reWrite(@Param(value = "count") int count) {
-//		List<FreeBoardVO> body = freeboardbiz.viewbody(count);
-//		ModelAndView mav = new ModelAndView("freeboard/rewrite","viewbody",body);
-//		return mav;
-//	}
-//	
-//	@RequestMapping(path="/rewrite.do", method = RequestMethod.POST)
-//	public ModelAndView reWriteDo(@ModelAttribute FreeBoardVO vo) {
-//		int res = freeboardbiz.reWriteDo(vo);
-//		ModelAndView mav = null;
-//		if(res>0) {
-//			mav = viewbody(vo.getCount());
-//		}else {
-//			//예외 상황
-//			mav = viewbody(vo.getCount());
-//		}
-//		return mav;
-//	}
-//	
-//	@RequestMapping(path="/deleteview", method = RequestMethod.GET )
-//	public ModelAndView deleteView(@Param(value = "count") int count) {
-//		int res = freeboardbiz.deleteView(count);
-//		ModelAndView mav = null;
-//		if(res>0) {
-//			mav = view();
-//		}else {
-//			//삭제 실패 예외처리
-//			mav = view();
-//		}
-//		return mav;
-//	}
 
 }
