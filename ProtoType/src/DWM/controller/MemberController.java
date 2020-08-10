@@ -5,11 +5,16 @@ import java.io.IOException;
 import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import DWM.action.MyAction;
 import DWM.biz.MemberBiz;
+import DWM.validate.MemberValidator;
+import DWM.validate.login;
 import DWM.vo.MemberInfoVO;
 import DWM.vo.MemberVO;
 
@@ -19,6 +24,8 @@ public class MemberController {
 
 	@Autowired
 	private MemberBiz biz;
+	@Autowired
+	private MemberValidator memberValidator;
 	private MyAction action = new MyAction();
 
 	@RequestMapping(path = "/regi")
@@ -61,10 +68,19 @@ public class MemberController {
 		return mav;
 	}
 
-	@RequestMapping(path = "/login.do")
-	public ModelAndView login(MemberVO vo) {
-		String result = biz.login(vo);
-		ModelAndView mav = new ModelAndView("home/login_result", "myresult", result);
+	@RequestMapping(path = "/login.do", method = RequestMethod.POST)
+	public ModelAndView login(@ModelAttribute("login") login login, BindingResult result) {
+		//1. 유효성 검사
+		memberValidator.validate(login, result);
+		if(result.hasErrors()) {
+			return new ModelAndView("upload/uploadForm");
+		}
+		
+		MemberVO vo = new MemberVO();
+		vo.setId(login.getId());
+		vo.setPassword(login.getPassword());
+		String resultid = biz.login(vo);
+		ModelAndView mav = new ModelAndView("home/login_result", "myresult", resultid);
 		return mav;
 	}
 }
