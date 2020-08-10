@@ -14,9 +14,9 @@ CREATE TABLE MEMBER_INFO (
 	NICKNAME VARCHAR2(20), /* 닉네임 */
 	GENDER VARCHAR2(6), /* 성별 */
 	AGE NUMBER, /* 나이 */
-	LOCALE VARCHAR2(20), /* 지역 */
+	LOCALE VARCHAR2(50), /* 지역 */
 	JOB VARCHAR2(20), /* 직업 */
-	JOB_LOCALE VARCHAR2(20), /* 직장 지역 */
+	JOB_LOCALE VARCHAR2(50), /* 직장 지역 */
 	CONSTRAINT PK_MEMBER_INFO PRIMARY KEY(ID),
 	CONSTRAINT FK_MEMBER_TO_MEMBER_INFO FOREIGN KEY(ID)
 	REFERENCES MEMBER(ID) ON DELETE CASCADE
@@ -29,7 +29,7 @@ CREATE TABLE BOARD (
 	TITLE VARCHAR2(100) NOT NULL, /* 제목 */
 	BODY VARCHAR2(500) NOT NULL, /* 내용 */
 	VIEW_COUNT NUMBER DEFAULT 0, /* 조회수 */
-	WRITE_DATE VARCHAR2(30) DEFAULT to_char(sysdate, 'YYYY-MM-DD HH:MI:SS') NOT NULL, /* 작성일 */
+	WRITE_DATE VARCHAR2(30) DEFAULT to_char(sysdate, 'YYYY-MM-DD HH24:MI:SS') NOT NULL, /* 작성일 */
 	CONSTRAINT PK_BOARD PRIMARY KEY(COUNT,ID),
 	CONSTRAINT FK_MEMBER_TO_BOARD FOREIGN KEY(ID)
 		REFERENCES MEMBER (ID) ON DELETE CASCADE
@@ -85,7 +85,7 @@ AFTER INSERT OR UPDATE ON BOARD
 FOR EACH ROW
 BEGIN
     INSERT INTO BOARD_LOG(count, id, update_date, title, body)
-    VALUES(:NEW.count, :NEW.id, to_char(sysdate, 'YYYY-MM-DD HH:MI:SS'), :NEW.title, :NEW.body);
+    VALUES(:NEW.count, :NEW.id, to_char(sysdate, 'YYYY-MM-DD HH24:MI:SS'), :NEW.title, :NEW.body);
 END;
 /
 
@@ -118,6 +118,20 @@ BEGIN
 
 update board set title = mytitle, body = mybody where count = mycount;
 update free_board set fb_file = file, fb_weather = weather where count = mycount;
+commit;	
+
+END;
+/
+
+/* 포토게시판 글 작성 프로시저*/ --시퀀스 연속 사용을 위해
+CREATE OR REPLACE PROCEDURE PHOTOBOARD_write_pr(
+id IN varchar2, title IN varchar2, file IN varchar2, weather IN varchar2
+)
+IS
+BEGIN
+
+insert into board(count,id,title,body,view_count) values(BOARD_count_seq.NEXTVAL,id,title,title,0);
+insert into photo_board values(BOARD_count_seq.CURRVAL,id,file,0,weather);
 commit;	
 
 END;

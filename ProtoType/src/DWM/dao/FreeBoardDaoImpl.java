@@ -23,7 +23,7 @@ public class FreeBoardDaoImpl extends JdbcDaoSupport implements FreeBoardDao, Fr
 			vo.setTitle(rs.getString("title"));
 			vo.setView_count(rs.getInt("view_count"));
 			vo.setWrite_date(rs.getString("write_date"));
-			try {
+			try {//select 시 null값 문제 해결법 생각해보자
 			vo.setBody(rs.getString("body"));
 			vo.setFb_file(rs.getString("fb_file"));
 			vo.setFb_weather(rs.getString("fb_weather"));
