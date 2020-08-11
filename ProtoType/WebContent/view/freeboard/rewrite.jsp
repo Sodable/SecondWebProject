@@ -42,6 +42,6 @@
 <input type="text" value="<%=viewbody.get(0).getCount() %>" name="count" hidden="true"/>
 <input type="submit" value="글 쓰기">
 </form>
-<a href="/ProtoType/freeboard/view">자유게시판으로 돌아가기</a>
+<a href="/ProtoType/freeboard/view?pagenum=1">자유게시판으로 돌아가기</a>
 </body>
 </html>

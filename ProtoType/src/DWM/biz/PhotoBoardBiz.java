@@ -23,8 +23,28 @@ public class PhotoBoardBiz {
 		return photoboarddao.writeDo(vo);
 	}
 
-	public int recommand(int count) {
-		return photoboarddao.recommand(count);
+	public int recommand(int count,String id) {
+		return photoboarddao.recommand(count,id);
+	}
+
+	public List<PhotoBoardVO> top3list(String date) {
+		return photoboarddao.top3list(date);
+	}
+
+	public PhotoBoardVO viewbody(int count) {
+		return photoboarddao.viewbody(count);
+	}
+
+	public List<PhotoBoardVO> likelist(String id) {
+		return photoboarddao.likelist(id);
+	}
+
+	public int recommandcancel(int count, String id) {
+		return photoboarddao.recommandcancel(count,id);
+	}
+
+	public int delete(int count) {
+		return photoboarddao.delete(count);
 	}
 
 }

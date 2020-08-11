@@ -27,6 +27,10 @@ public class MemberBiz {
 	public MemberInfoVO getLocale(String id) {
 		return memberdao.getLocale(id);
 	}
+
+	public String getNickname(String id) {
+		return memberdao.getNickname(id);
+	}
 	
 
 }

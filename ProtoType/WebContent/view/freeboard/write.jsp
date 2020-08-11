@@ -15,12 +15,6 @@
 <hr>
 <form action="/ProtoType/freeboard/write.do" method="post">
 <label>글 머리</label>
-<!-- <select name="category" >
-<option>카테고리 선택</option>
-<option>공지사항</option>
-<option>잡담</option>
-<option>등등..</option>
-</select> -->
 <select name="fb_weather" >
 <option>날씨 선택</option>
 <option>맑음</option>
@@ -38,6 +32,6 @@
 <input type="text" value="<%=loginid%>" name="id" hidden="true"/>
 <input type="submit" value="글 쓰기">
 </form>
-<a href="/ProtoType/freeboard/view">자유게시판으로 돌아가기</a>
+<a href="/ProtoType/freeboard/view?pagenum=1">자유게시판으로 돌아가기</a>
 </body>
 </html>

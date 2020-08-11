@@ -18,9 +18,9 @@ String raintype = null;
 for (int i = 0; i < weather.size(); i++) {
 		if(weather.get(i)[0].equals("PTY")){
 			switch(weather.get(i)[1]){
-			case "0" : raintype = "없음";break;
+			case "0" : raintype = "맑음";break;
 			case "1" : raintype = "비";break;
-			case "2" : raintype = "비/눈";break;
+			case "2" : raintype = "진눈깨비";break;
 			case "3" : raintype = "눈";break;
 			case "4" : raintype = "소나기";break;
 			case "5" : raintype = "빗방울";break;
@@ -44,7 +44,7 @@ enctype="multipart/form-data" modelAttribute="photoBoardVO" >
 <label>이미지 첨부</label>
 <form:input type="file" name="imagefile" path="imagefile"/><br>
 <form:input type="text" value="<%=raintype %>" name="pb_weather" path="pb_weather" hidden="true"/><br>
-<form:input type="text" value="test" name="id" path="id" hidden="true"/>
+<form:input type="text" value="<%=loginid%>" name="id" path="id" hidden="true"/>
 <input type="submit" value="글 쓰기">
 
 </form:form>

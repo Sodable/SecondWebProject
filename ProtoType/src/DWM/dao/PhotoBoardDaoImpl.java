@@ -60,21 +60,70 @@ public class PhotoBoardDaoImpl extends JdbcDaoSupport implements PhotoBoardDao, 
 	}
 
 	@Override
-	public int recommand(int count) {
+	public int recommand(int count,String id) {
 		RowMapper<PhotoBoardVO> rowMapper= new PhotoBoardRowMapper();
 		int res = 0;
 		try {
 			List<PhotoBoardVO> list = super.getJdbcTemplate().query(getpbcount,new Object[] {count}, rowMapper);
 			PhotoBoardVO vo = list.get(0);
-			System.out.println("증가 전 추천수 : "+vo.getPb_count());
+			//System.out.println("증가 전 추천수 : "+vo.getPb_count());
 			int pbcountint = Integer.parseInt(vo.getPb_count());
 			pbcountint++;
-			System.out.println("증가 후 추천수 : "+Integer.toString(pbcountint));
+			//System.out.println("증가 후 추천수 : "+Integer.toString(pbcountint));
 			res = super.getJdbcTemplate().update(raisepbcount,new Object[] {Integer.toString(pbcountint),count});
+			if(res>0) {
+				res = super.getJdbcTemplate().update(insertlike, new Object[] {count,id});
+			}
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
 		return res;
+	}
+
+	@Override
+	public List<PhotoBoardVO> top3list(String date) {
+		RowMapper<PhotoBoardVO> rowMapper= new PhotoBoardRowMapper();
+		List<PhotoBoardVO> list = super.getJdbcTemplate().query(selecttop3,new Object[] {String.valueOf(date+"%")}, rowMapper);
+		return list.subList(0, 3);
+	}
+
+	@Override
+	public PhotoBoardVO viewbody(int count) {
+		RowMapper<PhotoBoardVO> rowMapper= new PhotoBoardRowMapper();
+		List<PhotoBoardVO> list = super.getJdbcTemplate().query(selectone,new Object[] {count}, rowMapper);
+		return list.get(0);
+	}
+
+	@Override
+	public List<PhotoBoardVO> likelist(String id) {
+		RowMapper<PhotoBoardVO> rowMapper= new PhotoBoardRowMapper();
+		return super.getJdbcTemplate().query(selectlike,new Object[] {id}, rowMapper);
+	}
+
+	@Override
+	public int recommandcancel(int count, String id) {
+		RowMapper<PhotoBoardVO> rowMapper= new PhotoBoardRowMapper();
+		int res = 0;
+		try {
+			List<PhotoBoardVO> list = super.getJdbcTemplate().query(getpbcount,new Object[] {count}, rowMapper);
+			PhotoBoardVO vo = list.get(0);
+			//System.out.println("증가 전 추천수 : "+vo.getPb_count());
+			int pbcountint = Integer.parseInt(vo.getPb_count());
+			pbcountint--;
+			//System.out.println("증가 후 추천수 : "+Integer.toString(pbcountint));
+			res = super.getJdbcTemplate().update(raisepbcount,new Object[] {Integer.toString(pbcountint),count});
+			if(res>0) {
+				res = super.getJdbcTemplate().update(deletelike, new Object[] {count,id});
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return res;
+	}
+
+	@Override
+	public int delete(int count) {
+		return super.getJdbcTemplate().update(delete, new Object[] {count});
 	}
 
 }

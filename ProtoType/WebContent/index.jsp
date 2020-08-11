@@ -26,19 +26,21 @@
 
 
 	<a href="index.jsp">메인</a><br>
-	<a href="/ProtoType/weather/now?id=<%=loginid%>">현재 날씨 페이지</a><br>
-	<a href="/ProtoType/weather/future?id=<%=loginid%>">날씨 예보 페이지</a><br>
-	<a href="/ProtoType/freeboard/view">자유게시판</a><br>
+	<a href="/ProtoType/freeboard/view?pagenum=1">자유게시판</a><br>
 	<a href="/ProtoType/photoboard/view?date=today&pagenum=1">포토게시판</a><br>
 	
-	<hr>
 	<%if(session.getAttribute("id")==null){ %>
+	<hr>
 	<a href="/ProtoType/member/login">로그인</a><br>
 	<a href="/ProtoType/member/regi">회원가입</a><br>
 	<%}else{ %>
+	<!-- 로그인 후 이용가능 -->
+	<a href="/ProtoType/weather/now?id=<%=loginid%>">현재 날씨 페이지</a><br>
+	<a href="/ProtoType/weather/future?id=<%=loginid%>">날씨 예보 페이지</a><br>
+	<hr>
 	<a href="/ProtoType/member/logout">로그아웃</a><br>
-	<%} %>
 	<a href="/ProtoType/member/regimore">추가 정보 등록</a>
+	<%} %>
 
 	<br />
 	<hr>

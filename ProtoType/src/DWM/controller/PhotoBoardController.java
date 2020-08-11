@@ -7,7 +7,9 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -37,17 +40,20 @@ public class PhotoBoardController {
 	private MyAction myaction = new MyAction();
 
 	@RequestMapping(path = "/view")
-	public ModelAndView view(@RequestParam("date") String date, @RequestParam("pagenum") int pagenum) {
+	public ModelAndView view(@RequestParam("date") String date, @RequestParam("pagenum") int pagenum, @SessionAttribute("id") String id) {
+		//페이지 디폴트
 		if (pagenum == 0) {
 			pagenum = 1;
-		}
-
+		}//
+		
+		//날짜 설정
 		if (date.equals("today")) {
 			Date datenow = new Date();
 			SimpleDateFormat today = new SimpleDateFormat("yyyy-MM-dd");
 			date = today.format(datenow);
-		}
+		}//
 
+		//게시물 받아오기
 		int itemnum = 0;
 		List<PhotoBoardVO> photolist = photoboardbiz.list(date, pagenum);
 //		System.out.println(photolist.isEmpty());
@@ -55,9 +61,28 @@ public class PhotoBoardController {
 			itemnum = photolist.size();
 		}
 //		long itemnum = photoboardbiz.getItemnum(date);
-
+		//
+		
+		//top3 게시물 받아오기
+		List<PhotoBoardVO> top3list = photoboardbiz.top3list(date);
+		//
+		
+		//닉네임 받아오기
+		Map<String, String> nickname = new HashMap<>();
+		for(PhotoBoardVO vo : photolist) {
+		nickname.put(vo.getId(), memberbiz.getNickname(vo.getId()));
+		}//
+		
+		// 추천한 게시물 받아오기
+		List<PhotoBoardVO> likelist = photoboardbiz.likelist(id);
+		//
+		
+		//뷰로 보낼 객체
 		ModelAndView mav = new ModelAndView("photoboard/main");
 		mav.addObject("photolist", photolist);
+		mav.addObject("top3list", top3list);
+		mav.addObject("likelist", likelist);
+		mav.addObject("nickname", nickname);
 		mav.addObject("itemnum", itemnum);
 		mav.addObject("pagenum", pagenum);
 		mav.addObject("date", date);
@@ -115,7 +140,7 @@ public class PhotoBoardController {
 		int res = photoboardbiz.writeDo(photoBoardVO);
 		ModelAndView mav = null;
 		if (res > 0) {
-			mav = view("today", 1);
+			mav = view("today", 1,photoBoardVO.getId());
 		} else {
 			mav = new ModelAndView("photoboard/write");
 		}
@@ -123,14 +148,45 @@ public class PhotoBoardController {
 	}
 	
 	@RequestMapping(path="/recommand", method= RequestMethod.GET)
-	public ModelAndView recommand(@RequestParam("date") String date, @RequestParam("pagenum") int pagenum, @RequestParam("count") int count) {
-		int res = photoboardbiz.recommand(count);
+	public ModelAndView recommand(@RequestParam("date") String date, @RequestParam("pagenum") int pagenum, @RequestParam("count") int count, @RequestParam("id") String id) {
+		int res = photoboardbiz.recommand(count,id);
 		if(res>0) {
 			//성공 시
 		}else {
 			//실패 시
 		}
-		return view(date,pagenum);
+		return view(date,pagenum,id);
+	}
+	
+	@RequestMapping(path="/recommandcancel", method= RequestMethod.GET)
+	public ModelAndView recommandcancel(@RequestParam("date") String date, @RequestParam("pagenum") int pagenum, @RequestParam("count") int count, @RequestParam("id") String id) {
+		int res = photoboardbiz.recommandcancel(count,id);
+		if(res>0) {
+			//성공 시
+		}else {
+			//실패 시
+		}
+		return view(date,pagenum,id);
+	}
+	
+	@RequestMapping(path="/viewbody", method= RequestMethod.GET)
+	public ModelAndView viewbody(@RequestParam("count") int count) {
+		PhotoBoardVO photo = photoboardbiz.viewbody(count);
+		ModelAndView mav = new ModelAndView("photoboard/viewbody","photo",photo);
+		return mav;
+	}
+	
+	@RequestMapping(path = "/delete", method = RequestMethod.GET)
+	public ModelAndView deleteView(@RequestParam("date") String date, @RequestParam("pagenum") int pagenum, @RequestParam("id") String id, @RequestParam("count") int count) {
+		int res = photoboardbiz.delete(count);
+		ModelAndView mav = null;
+		if (res > 0) {
+			mav = view(date, pagenum, id);
+		} else {
+			// 삭제 실패 예외처리
+			mav = view(date, pagenum, id);
+		}
+		return mav;
 	}
 
 }

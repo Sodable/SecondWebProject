@@ -92,4 +92,17 @@ public class MemberDao {
 		return res;
 	}
 
+	public String getNickname(String id) {
+		MemberInfoVO res = null;
+		
+		try (SqlSession session = factory.openSession();) {
+			UserMapper mapper = session.getMapper(UserMapper.class);
+			
+			res = mapper.selectMemberInfo(id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return res.getNickname();
+	}
+
 }
