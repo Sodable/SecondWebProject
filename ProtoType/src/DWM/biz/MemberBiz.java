@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import DWM.dao.MemberDao;
-import DWM.vo.MemberInfoVO;
 import DWM.vo.MemberVO;
 
 @Service
@@ -20,16 +19,20 @@ public class MemberBiz {
 		return memberdao.login(vo);
 	}
 
-	public String insert_more(MemberInfoVO vo) {
+	public String insert_more(MemberVO vo) {
 		return memberdao.insert_more(vo);
 	}
 
-	public MemberInfoVO getLocale(String id) {
+	public MemberVO getLocale(String id) {
 		return memberdao.getLocale(id);
 	}
 
 	public String getNickname(String id) {
 		return memberdao.getNickname(id);
+	}
+
+	public int delete(String id) {
+		return memberdao.delete(id);
 	}
 	
 

@@ -14,7 +14,6 @@ import org.springframework.web.servlet.ModelAndView;
 import DWM.action.MyAction;
 import DWM.biz.MemberBiz;
 import DWM.validate.MemberValidator;
-import DWM.vo.MemberInfoVO;
 import DWM.vo.MemberVO;
 
 @Controller
@@ -47,7 +46,7 @@ public class MemberController {
 	}
 
 	@RequestMapping(path = "/regimore.do")
-	public ModelAndView insert_more(MemberInfoVO vo) {
+	public ModelAndView insert_more(MemberVO vo) {
 		String[] xy = new String[] {"-1","-1"};
 		try {
 			xy = action.getXY(vo.getLocale());
@@ -83,5 +82,11 @@ public class MemberController {
 	@RequestMapping(path = "/logout")
 	public ModelAndView logout() {
 		return new ModelAndView("home/logout");
+	}
+	
+	@RequestMapping(path = "/delete")
+	public int delete(String id) {
+		int n = biz.delete(id);
+		return n;
 	}
 }

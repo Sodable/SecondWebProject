@@ -13,7 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import DWM.action.MyAction;
 import DWM.biz.BoardBiz;
 import DWM.biz.MemberBiz;
-import DWM.vo.MemberInfoVO;
+import DWM.vo.MemberVO;
 
 @Controller
 @RequestMapping("/weather")
@@ -31,7 +31,7 @@ public class WeatherController {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		input[0]= sdf.format(datenow).trim();
 //		System.out.println(id);
-		MemberInfoVO vo = memberbiz.getLocale(id);
+		MemberVO vo = memberbiz.getLocale(id);
 		input[1]=vo.getLocale().split(" ")[3].trim();
 		input[2]=vo.getLocale().split(" ")[4].trim();
 		// -- input date 実特
@@ -51,7 +51,7 @@ public class WeatherController {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		input[0]= sdf.format(datenow).trim();
 //		System.out.println(id);
-		MemberInfoVO vo = memberbiz.getLocale(id);
+		MemberVO vo = memberbiz.getLocale(id);
 		input[1]=vo.getLocale().split(" ")[3].trim();
 		input[2]=vo.getLocale().split(" ")[4].trim();
 		// -- input date 実特

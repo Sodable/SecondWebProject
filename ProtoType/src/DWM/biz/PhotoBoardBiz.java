@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import DWM.dao.PhotoBoardDao;
 import DWM.dao.PhotoBoardDaoImpl;
+import DWM.vo.FreeBoardVO;
 import DWM.vo.PhotoBoardVO;
 
 @Service("photoBoardBiz")
@@ -45,6 +46,10 @@ public class PhotoBoardBiz {
 
 	public int delete(int count) {
 		return photoboarddao.delete(count);
+	}
+
+	public List<PhotoBoardVO> list() {
+		return photoboarddao.list();
 	}
 
 }

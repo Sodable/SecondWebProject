@@ -41,6 +41,11 @@
 	<a href="/ProtoType/member/logout">로그아웃</a><br>
 	<a href="/ProtoType/member/regimore">추가 정보 등록</a>
 	<%} %>
+	
+	<%if((session.getAttribute("id")!=null)&&(session.getAttribute("id").equals("master"))){ %>
+	<a href="/ProtoType/master/main">관리자 페이지 가기</a>
+	<%} %>
+	
 
 	<br />
 	<hr>

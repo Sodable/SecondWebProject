@@ -1,12 +1,13 @@
 package DWM.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import DWM.mapper.UserMapper;
-import DWM.vo.MemberInfoVO;
 import DWM.vo.MemberVO;
 
 @Repository
@@ -55,7 +56,7 @@ public class MemberDao {
 		return result;
 	}
 
-	public String insert_more(MemberInfoVO vo) {
+	public String insert_more(MemberVO vo) {
 		String result = null;
 
 		try (SqlSession session = factory.openSession();) {
@@ -78,8 +79,8 @@ public class MemberDao {
 		return result;
 	}
 
-	public MemberInfoVO getLocale(String id) {
-		MemberInfoVO res = null;
+	public MemberVO getLocale(String id) {
+		MemberVO res = null;
 		
 		try (SqlSession session = factory.openSession();) {
 			UserMapper mapper = session.getMapper(UserMapper.class);
@@ -93,7 +94,7 @@ public class MemberDao {
 	}
 
 	public String getNickname(String id) {
-		MemberInfoVO res = null;
+		MemberVO res = null;
 		
 		try (SqlSession session = factory.openSession();) {
 			UserMapper mapper = session.getMapper(UserMapper.class);
@@ -103,6 +104,47 @@ public class MemberDao {
 			e.printStackTrace();
 		}
 		return res.getNickname();
+	}
+
+	public List<MemberVO> memberlist() {
+		List<MemberVO> memberlist = null;
+		
+		try (SqlSession session = factory.openSession();) {
+			UserMapper mapper = session.getMapper(UserMapper.class);
+			memberlist = mapper.selectMemberList();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return memberlist;
+	}
+
+	public int delete(String id) {
+		int n = 0;
+		try (SqlSession session = factory.openSession();) {
+			UserMapper mapper = session.getMapper(UserMapper.class);
+			
+			n = mapper.deleteMember(id);
+			if (n > 0) {
+				session.commit();
+			} else {
+				session.rollback();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return n;
+	}
+	
+	public MemberVO search(String id) {
+		MemberVO res = null;
+
+		try (SqlSession session = factory.openSession();) {
+			UserMapper mapper = session.getMapper(UserMapper.class);
+			res = mapper.memberSearch(id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return res;
 	}
 
 }

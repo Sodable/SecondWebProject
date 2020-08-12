@@ -9,6 +9,7 @@ import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import org.springframework.stereotype.Repository;
 
 import DWM.dao.FreeBoardDaoImpl.FreeBoardRowMapper;
+import DWM.vo.FreeBoardVO;
 import DWM.vo.PhotoBoardVO;
 
 
@@ -42,7 +43,7 @@ public class PhotoBoardDaoImpl extends JdbcDaoSupport implements PhotoBoardDao, 
 	public List<PhotoBoardVO> list(String date,int pagenum) {
 		RowMapper<PhotoBoardVO> rowMapper= new PhotoBoardRowMapper();
 //		System.out.println(date);
-		return super.getJdbcTemplate().query(selectall,new Object[] {String.valueOf(date+"%")}, rowMapper);
+		return super.getJdbcTemplate().query(selectdate,new Object[] {String.valueOf(date+"%")}, rowMapper);
 	}
 
 	@Override
@@ -84,7 +85,7 @@ public class PhotoBoardDaoImpl extends JdbcDaoSupport implements PhotoBoardDao, 
 	public List<PhotoBoardVO> top3list(String date) {
 		RowMapper<PhotoBoardVO> rowMapper= new PhotoBoardRowMapper();
 		List<PhotoBoardVO> list = super.getJdbcTemplate().query(selecttop3,new Object[] {String.valueOf(date+"%")}, rowMapper);
-		return list.subList(0, 3);
+		return (list.size()<3 ? list : list.subList(0, 3));
 	}
 
 	@Override
@@ -124,6 +125,12 @@ public class PhotoBoardDaoImpl extends JdbcDaoSupport implements PhotoBoardDao, 
 	@Override
 	public int delete(int count) {
 		return super.getJdbcTemplate().update(delete, new Object[] {count});
+	}
+
+	@Override
+	public List<PhotoBoardVO> list() {
+		RowMapper<PhotoBoardVO> rowMapper= new PhotoBoardRowMapper();
+		return super.getJdbcTemplate().query(selectall, rowMapper);
 	}
 
 }

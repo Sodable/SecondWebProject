@@ -9,9 +9,6 @@ uri="http://www.springframework.org/tags/form" %>
 <meta http-equiv="Content-type" content="text/html; charset=UTF-8">
 <title>**포토게시판**</title>
 		<%String loginid =(String) session.getAttribute("id");%>
-	<p>
-		로그인 id :
-		<%=loginid%></p>
 <% List<String[]> weather = (List<String[]>) request.getAttribute("weather"); %>
 <%
 String raintype = null;

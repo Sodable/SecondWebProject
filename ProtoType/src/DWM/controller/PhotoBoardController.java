@@ -26,7 +26,7 @@ import org.springframework.web.servlet.ModelAndView;
 import DWM.action.MyAction;
 import DWM.biz.MemberBiz;
 import DWM.biz.PhotoBoardBiz;
-import DWM.vo.MemberInfoVO;
+import DWM.vo.MemberVO;
 import DWM.vo.PhotoBoardVO;
 
 @Controller
@@ -97,7 +97,7 @@ public class PhotoBoardController {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		input[0] = sdf.format(datenow).trim();
 //		System.out.println(id);
-		MemberInfoVO vo = memberbiz.getLocale(id);
+		MemberVO vo = memberbiz.getLocale(id);
 		input[1] = vo.getLocale().split(" ")[3].trim();	
 		input[2] = vo.getLocale().split(" ")[4].trim();
 		// -- input date ¼ÂÆÃ

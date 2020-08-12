@@ -1,5 +1,3 @@
-<%@page import="DWM.controller.MemberController"%>
-<%@page import="DWM.dao.MemberDao"%>
 <%@page import="DWM.vo.PhotoBoardVO"%>
 <%@page import="java.util.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -55,7 +53,7 @@ if(!photolist.isEmpty()){
 <%=date%>&nbsp;TOP&nbsp;3<br>
 <table border="0">
 <tr>
-<%for(int i = 0 ; i < 3 ; i++) {%>
+<%for(int i = 0 ; i < top3list.size() ; i++) {%>
 <td><img src="/ProtoType/upload/photoboard/<%=top3list.get(i).getPb_file().trim()%>" 
 	title="<%=top3list.get(i).getPb_file().trim()%>" alt="" width="100px" height="100px" 
 	onclick="window.open('/ProtoType/photoboard/viewbody?count=<%=top3list.get(i).getCount() %>',

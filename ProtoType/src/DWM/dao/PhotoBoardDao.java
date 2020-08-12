@@ -2,6 +2,7 @@ package DWM.dao;
 
 import java.util.List;
 
+import DWM.vo.FreeBoardVO;
 import DWM.vo.PhotoBoardVO;
 
 public interface PhotoBoardDao {
@@ -14,5 +15,6 @@ public interface PhotoBoardDao {
 	public List<PhotoBoardVO> likelist(String id);
 	public int recommandcancel(int count, String id);
 	public int delete(int count);
+	public List<PhotoBoardVO> list();
 
 }
