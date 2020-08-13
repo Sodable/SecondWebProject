@@ -98,4 +98,25 @@ public class FreeBoardController {
 		return mav;
 	}
 
+	@RequestMapping(path = "/search")
+	public ModelAndView search(@RequestParam("type") String type, @RequestParam("search") String search, @RequestParam("pagenum") int pagenum) {
+		// 페이지 디폴트
+		if (pagenum == 0) {
+			pagenum = 1;
+		} //
+		int itemnum = 0;
+		List<FreeBoardVO> searchlist = freeboardbiz.searchlist(type, search);
+		if (!searchlist.isEmpty()) {
+			itemnum = searchlist.size();
+		}
+
+		ModelAndView mav = new ModelAndView("freeboard/searchresult");
+		mav.addObject("freelist", searchlist);
+		mav.addObject("itemnum", itemnum);
+		mav.addObject("pagenum", pagenum);
+		mav.addObject("type", type);
+		mav.addObject("search", search);
+		return mav;
+	}
+
 }

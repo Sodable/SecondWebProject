@@ -11,5 +11,6 @@ public interface FreeBoardDao {
 	public List<FreeBoardVO> viewbody(int count);
 	public int reWriteDo(FreeBoardVO vo);
 	public int deleteView(int count);
+	public List<FreeBoardVO> searchlist(String type, String search);
 	
 }

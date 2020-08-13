@@ -24,16 +24,17 @@ public class PhotoBoardDaoImpl extends JdbcDaoSupport implements PhotoBoardDao, 
 			vo.setCount(rs.getInt("count"));
 			vo.setId(rs.getString("id"));
 			try {
+			vo.setPb_weather(rs.getString("pb_weather"));
 			vo.setPb_count(rs.getString("pb_count"));
 			vo.setPb_file(rs.getString("pb_file"));
-			vo.setPb_weather(rs.getString("pb_weather"));
-			}catch(Exception e) {
-			}
+			}catch(Exception e) {}
 			try {
 			vo.setWrite_date(rs.getString("write_date"));
 			vo.setTitle(rs.getString("title"));
-			}catch(Exception e) {
-			}
+			}catch(Exception e) {}
+			try {
+				vo.setTitle(rs.getString("body"));
+			}catch(Exception e) {}
 			return vo;
 		}
 

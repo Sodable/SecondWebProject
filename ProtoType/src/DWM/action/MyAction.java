@@ -133,7 +133,6 @@ public class MyAction {
 	//return : List<String[]> {{날짜(2020-08-06), x좌표, y좌표}, {category, value} , ...}
 	public List<String[]> getWeatherNow(String[] input) {
 		List<String[]> result = new ArrayList<String[]>();
-		result.add(input);
 		String nx = input[1];
 		String ny = input[2];
 		String basedate = input[0].split(" ")[0].replace("-", "");
@@ -146,6 +145,9 @@ public class MyAction {
 		if (basetime.length() == 3) {
 			basetime = "0" + basetime;
 		}
+		input[1]=basedate;
+		input[2]=basetime;
+		result.add(input);
 
 //		System.out.println("basedate = " + basedate);
 //		System.out.println("basetime = " + basetime);
@@ -191,7 +193,6 @@ public class MyAction {
 	//return : List<String[]> {{날짜(2020-08-06), x좌표, y좌표}, {예보 일자, 예보 시각, category, value} , ...}
 	public List<String[]> getWeatherFuture(String[] input) {
 		List<String[]> result = new ArrayList<String[]>();
-		result.add(input);
 		String nx = input[1];
 		String ny = input[2];
 		String basedate = input[0].split(" ")[0].replace("-", "");
@@ -249,6 +250,10 @@ public class MyAction {
 			basetime = "0" + basetime;
 		}
 		// -- basetime 제공 분단위 처리
+
+		input[1]=basedate;
+		input[2]=basetime;
+		result.add(input);
 		
 //		System.out.println("basedate = " + basedate);
 //		System.out.println("basetime = " + basetime);

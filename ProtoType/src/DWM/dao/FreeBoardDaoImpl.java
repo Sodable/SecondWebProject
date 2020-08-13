@@ -9,6 +9,7 @@ import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import org.springframework.stereotype.Repository;
 
 import DWM.vo.FreeBoardVO;
+import DWM.vo.PhotoBoardVO;
 
 @Repository
 public class FreeBoardDaoImpl extends JdbcDaoSupport implements FreeBoardDao, FreeBoardSql {
@@ -57,7 +58,18 @@ public class FreeBoardDaoImpl extends JdbcDaoSupport implements FreeBoardDao, Fr
 	@Override
 	public List<FreeBoardVO> viewbody(int count) {
 		RowMapper<FreeBoardVO> rowMapper= new FreeBoardRowMapper();
-		return super.getJdbcTemplate().query(freeviewbody, new Object[] {count}, rowMapper);
+		List<FreeBoardVO> list = super.getJdbcTemplate().query(freeviewbody, new Object[] {count}, rowMapper);
+		
+		FreeBoardVO vo = list.get(0);
+		//System.out.println("증가 전 추천수 : "+vo.getPb_count());
+		int pbcountint = vo.getView_count();
+		pbcountint++;
+		vo.setView_count(pbcountint);
+		//System.out.println("증가 후 추천수 : "+Integer.toString(pbcountint));
+		int res = super.getJdbcTemplate().update(raiseviewcount,new Object[] {pbcountint,count});
+		list.set(0, vo);
+		
+		return list;
 	}
 
 	@Override
@@ -77,6 +89,28 @@ public class FreeBoardDaoImpl extends JdbcDaoSupport implements FreeBoardDao, Fr
 	@Override
 	public int deleteView(int count) {
 		return super.getJdbcTemplate().update(deleteview, new Object[] {count});
+	}
+
+	@Override
+	public List<FreeBoardVO> searchlist(String type, String search) {
+		RowMapper<FreeBoardVO> rowMapper= new FreeBoardRowMapper();
+		List<FreeBoardVO> list = null;
+		switch(type) {
+		case "제목" : list = super.getJdbcTemplate().query(searchlist1+"where title like ?"+searchlist2,
+								new Object[] {"%"+search+"%"},rowMapper);
+			break;
+		case "내용" : list = super.getJdbcTemplate().query(searchlist1+"where body like ?"+searchlist2,
+				new Object[] {"%"+search+"%"},rowMapper);
+			break;
+		case "작성자" : list = super.getJdbcTemplate().query(searchlist1+"where free_board.id like ?"+searchlist2,
+				new Object[] {"%"+search+"%"},rowMapper);
+			break;
+		case "제목/내용" : list = super.getJdbcTemplate().query(searchlist1+"where title like ? or body like ?"+searchlist2,
+				new Object[] {"%"+search+"%","%"+search+"%"},rowMapper);
+			break;
+		default : 
+		}
+		return list;
 	}
 
 

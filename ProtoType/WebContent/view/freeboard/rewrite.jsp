@@ -33,6 +33,9 @@
 <option>우박</option>
 <option>낙뢰</option>
 <option>안개</option>
+<%if((loginid!=null)&&(loginid.equals("master"))) {%>
+<option>공지 사항</option>
+<%} %>
 </select><br/>
 <label>제목</label>
 <input type="text" name="title" min="1" style="width: 500px " value="<%=viewbody.get(0).getTitle() %>"/><br>

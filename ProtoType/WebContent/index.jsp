@@ -27,7 +27,7 @@
 
 	<a href="index.jsp">메인</a><br>
 	<a href="/ProtoType/freeboard/view?pagenum=1">자유게시판</a><br>
-	<a href="/ProtoType/photoboard/view?date=today&pagenum=1">포토게시판</a><br>
+	<a href="/ProtoType/photoboard/view?date=today&pagenum=1" onclick="alert()">포토게시판</a><br>
 	
 	<%if(session.getAttribute("id")==null){ %>
 	<hr>

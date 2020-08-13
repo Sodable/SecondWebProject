@@ -19,7 +19,12 @@
 int cnt = 0;
 for (int i = 0; i < weather.size(); i++) {
 	if (i == 0) {
-		out.println("현재 시간  : " + weather.get(i)[0]+"<br>");
+		out.println("현재 시간  : " + weather.get(i)[0] + "<br>");
+		out.println("발표 시간  : " + 
+				weather.get(i)[1].substring(0,4) + "-"+
+				weather.get(i)[1].substring(4,6) + "-"+
+				weather.get(i)[1].substring(6) + " "+
+				weather.get(i)[2].substring(0, 2) + ":00<br><br>");
 		//out.println("nx : " + weather.get(i)[1]);
 		//out.println("ny  : " + weather.get(i)[2]+"<br>");
 	} else {
