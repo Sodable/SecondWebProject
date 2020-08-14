@@ -6,6 +6,15 @@
    Date nowTime = new Date();
    SimpleDateFormat sf = new SimpleDateFormat("지금 눈 떠 있는 시간 궁금하죠? : [yyyy년 MM월 dd일 a hh시 mm분]");
 %>
+
+      <!-- 임시 로그인 -->
+      <%
+      session.setAttribute("id", "test");
+      String loginid = (String) session.getAttribute("id");
+      %>
+      
+      
+      
 <!DOCTYPE HTML>
 <!--
    Monochromed by TEMPLATED
@@ -39,6 +48,27 @@
       </noscript>
       <!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
       <!--[if lte IE 9]><link rel="stylesheet" href="css/ie/v9.css" /><![endif]-->
+      <script type="text/javascript">
+      $(document).ready(function(){
+    	  var loginid = "<%=(String)session.getAttribute("id") %>";
+    		$.ajax({
+    			type: "POST",
+    		  url: "/ProtoType/weather/now?id="+loginid,
+    		  success: function(data){ 
+    		  										$('#weather').html(data)},
+    		  dataType: "html"
+    		});
+    		
+    		$.ajax({
+    			type: "POST",
+    		  url: "/ProtoType/photoboard/top3",
+    		  success: function(data){ 
+    		  										$('#top3').html(data)},
+    		  dataType: "html"
+    		});
+    	});
+      </script>
+      
    </head>
    <body class="homepage">
 
@@ -56,8 +86,8 @@
                <nav id="nav">
                   <ul>
                      <li class="active"><a href="/ProtoType/member/login.do">매일날로먹기</a></li>
-                     <li><a href="/ProtoType/freeboard/view">소통의공간</a></li>
-                     <li><a href="/ProtoType/photoboard/view?date=today&pagenum=1">데일리룩</a></li>
+                     <li><a href="/ProtoType/freeboard/view?pagenum=1">소통의공간</a></li>
+                     <li><a href="/ProtoType/photoboard/view?date=today&pagenum=1&id=<%=loginid%>">데일리룩</a></li>
                      <li><a href="twocolumn2.html">날씨달력</a></li>
                      <li><a href="onecolumn.html">채팅관리</a></li>
                      <li><a href="onecolumn.html">날씨에 대해서</a></li>
@@ -78,40 +108,7 @@
                <br/>
             </header>
             
-            <div class="row">
-               <div class="3u">
-                  <section>
-                     <a href="#" class="image full"><img src="https://image.musinsa.com/mfile_s01/2018/01/12/8df7b73a7820f4aef47864f2a6c5fccf005331.jpg" alt="" /></a>
-                     <p>날씨 : </p><br/>
-                     <p>지역 : </p>
-                     <a href="#" class="button">Read More</a>
-                  </section>
-               </div>
-               <div class="3u">
-                  <section>
-                     <a href="#" class="image full"><img src="https://img1.daumcdn.net/thumb/R720x0/?fname=http%3A%2F%2Ft1.daumcdn.net%2Fliveboard%2Ftag%2Fd397a80e333c44f0b930dee4270c4e9d.png" alt="" /></a>
-                     <p>날씨 : </p><br/>
-                     <p>지역 : </p>
-                     <a href="#" class="button">Read More</a>
-                  </section>
-               </div>
-               <div class="3u">
-                  <section>
-                     <a href="#" class="image full"><img src="https://img.eomisae.co.kr/files/attach/images/100572/821/664/032/13d8ec628140b4b74a7ffb47185ea547.jpeg" alt="" /></a>
-                     <p>날씨 : </p><br/>
-                     <p>지역 : </p>
-                     <a href="#" class="button">Read More</a>
-                  </section>
-               </div>
-               <div class="3u">
-                  <section>
-                     <a href="#" class="image full"><img src="http://res.heraldm.com/content/image/2015/05/08/20150508000962_0.jpg" alt="" /></a>
-                     <p>날씨 : </p><br/>
-                     <p>지역 : </p>
-                     <a href="#" class="button">Read More</a>
-                  </section>
-               </div>
-            </div>
+            <div class="row" id="top3"></div>
             <div class="divider">&nbsp;</div>
             <div class="row">
             
@@ -120,8 +117,8 @@
                      <section id="content">
                         <header>
                            <h2>현재 날씨가 궁금하시죠?</h2>
-                           <span class="byline">rutrum</span>
                         </header>
+                        <div id="weather" class="byline"></div>
                         <p><a href="#" class="image full"><img src="images/pics02.jpg" alt=""></a></p>
                         <p><strong>Monochromed</strong></a>.</p>
                         <a href="#" class="button">Read More</a>

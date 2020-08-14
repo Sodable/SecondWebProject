@@ -10,6 +10,7 @@
 <body>
 <c:if test="${!empty myresult }">
 	<c:redirect url="/" />
+<%-- 	<c:redirect url="/view/home/home.jsp" /> --%>
 </c:if>
 
 <c:if test="${empty myresult }">

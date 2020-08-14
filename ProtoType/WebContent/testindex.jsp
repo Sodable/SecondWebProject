@@ -19,7 +19,7 @@
     <meta name="description" content="Landing PAGE Html5 Template">
     <meta name="keywords" content="landing,startup,flat">
     <meta name="author" content="Made By GN DESIGNS">
-    <title>수정중</title>
+    <title>매일날로먹기</title>
 
 
 
@@ -36,6 +36,10 @@
    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/social/social_font-awesome.min.css">
    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/social/social_main.css">
    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/social/social_util.css">
+   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/socialfloating.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/components/reset.min.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/components/site.min.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/components/icon.min.css">
    
    
    
@@ -152,7 +156,7 @@ color: #6f6f6f;
 
                     <li class="scroll"><a href="#about">매날먹은요?</a></li>
 
-                    <li class="scroll"><a href="#services">추구방향</a></li>
+                    <li class="scroll"><a href="#services">서비스</a></li>
 
                     <li class="scroll"><a href="#price">주요기능</a></li>
 
@@ -441,9 +445,9 @@ color: #6f6f6f;
 
                         <i class="material-icons">thumb_up</i>
 
-                        <h4>지금까지는 없던..기발함</h4>
+                        <h4>데일리룩</h4>
 
-                        <p>Quality ipsum dolor sit amet, consectetur adipisicing elit. Beatae quod error quis.</p>
+                        <p>오늘하루 나의 데일리룩으로 날씨를 표현해보세요! 다른사람의 데일리룩을 보고 추천을 해보세요!</p>
 
                     </div>
 
@@ -455,9 +459,9 @@ color: #6f6f6f;
 
                         <i class="material-icons">euro_symbol</i>
 
-                        <h4>Best Price</h4>
+                        <h4>날씨캘린더</h4>
 
-                        <p>Price ipsum dolor sit amet, consectetur adipisicing elit. Beatae quod error quis.</p>
+                        <p>날씨에 따라서 일정을 짜보세요! 비즈니스에 도움이 된답니다!</p>
 
                     </div>
 
@@ -469,9 +473,9 @@ color: #6f6f6f;
 
                         <i class="material-icons">forum</i>
 
-                        <h4>24/7 Support</h4>
+                        <h4>날씨채팅</h4>
 
-                        <p>Support ipsum dolor sit amet, consectetur adipisicing elit. Beatae quod error quis.</p>
+                        <p>현장근무를 하시는 분들.. 날씨 중요하시죠? 날씨 채팅을 준비했습니다!</p>
 
                     </div>
 
@@ -483,9 +487,9 @@ color: #6f6f6f;
 
                         <i class="material-icons">view_carousel</i>
 
-                        <h4>UX/UI Design</h4>
+                        <h4>날씨예측서비스</h4>
 
-                        <p>Quality ipsum dolor sit amet, consectetur adipisicing elit. Beatae quod error quis.</p>
+                        <p>근거있는 자료들로 근거있는 예측을 해드릴께요! 마음껏 활용해주세요!</p>
 
                     </div>
 
@@ -515,9 +519,9 @@ color: #6f6f6f;
 
                 <div class="col-md-6">
 
-                    <h2>Awesome Features</h2>
+                    <h2>미래에는요..</h2>
 
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo, repudiandae mollitia iure magni accusamus, alias veniam.</p>
+                    <p>현재에도 인간의 많은 활동으로 기후가 변화하고 있습니다. 우리가 잘 알고 있는 특징으로는 열대야와 그로인한 빙하가 녹아서 생태계가 위협을 받고 있죠.</p>
 
                     <hr>
 
@@ -531,7 +535,7 @@ color: #6f6f6f;
 
                                 <a href="#">
 
-                                    <i class="material-icons">monetization_on</i>
+                                    <i class="material-icons">(사진)</i>
 
                                 </a>
 
@@ -539,9 +543,9 @@ color: #6f6f6f;
 
                             <div class="media-body">
 
-                                <h4 class="media-heading">Easy On Your Wallet</h4>
+                                <h4 class="media-heading">해수면과 바다</h4>
 
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti nam vel provident quae.</p>
+                                <p>전 지구에 비해 우리나라의 해양 수온과 해수면이 높아지고 바다가 산성화되고 있어요.</p>
 
                             </div>
 
@@ -555,7 +559,7 @@ color: #6f6f6f;
 
                                 <a href="#">
 
-                                    <i class="material-icons">access_time</i>
+                                    <i class="material-icons">(사진)</i>
 
                                 </a>
 
@@ -563,9 +567,9 @@ color: #6f6f6f;
 
                             <div class="media-body">
 
-                                <h4 class="media-heading">Time Saver</h4>
+                                <h4 class="media-heading">평균기온</h4>
 
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti nam vel provident quae.</p>
+                                <p>2014년 이후 열대야와 폭염의 빈도가 증가하고 5월마다 평균기온이 관측이래 1~5위가 형성될정도로 여름처럼 변하고 있어요.</p>
 
                             </div>
 
@@ -579,7 +583,7 @@ color: #6f6f6f;
 
                                 <a href="#">
 
-                                    <i class="material-icons">computer</i>
+                                    <i class="material-icons">(사진)</i>
 
                                 </a>
 
@@ -587,9 +591,8 @@ color: #6f6f6f;
 
                             <div class="media-body">
 
-                                <h4 class="media-heading">Fully Responsive</h4>
-
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti nam vel provident quae.</p>
+                                <h4 class="media-heading">이산화탄소 증가</h4>
+                        <p>화석연료연소와 토지이용 변화로 이산화탄소가 증가하고, 이것이 지구 대대분의 이상기후 현상을 발생시켜요!</p>
 
                             </div>
 
@@ -602,7 +605,7 @@ color: #6f6f6f;
                 <!-- Features Img -->
 
                 <div class="col-md-6 col-md-push-2">
-
+               <i>이미지</i>
                     <img src="../../resources/assets/img/dashboard.png" class="img-responsive" alt="feature">
 
                 </div>
@@ -627,9 +630,9 @@ color: #6f6f6f;
 
         <div class="container">
 
-            <h2>Choose Your Plan</h2>
+            <h2>매일날로먹기가 제공하는 주요 서비스는?</h2>
 
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio, optio.</p>
+            <p>변화하는 기후에 따라 발전하는 서비스를 제공할께요 :)</p>
 
             <div class="row">
 
@@ -645,15 +648,15 @@ color: #6f6f6f;
 
                             <div class="pricing-header">
 
-                                <h3>Single User</h3>
+                                <h3>데일리룩</h3>
 
                                 <h3>
 
-                                <span class="currency">$</span>
+                                <span class="currency">아이콘</span>
 
-                                <span class="amount">20</span>
+                                <span class="amount">1</span>
 
-                                <span class="period">/mo</span>
+                                <span class="period">2</span>
 
                                 </h3>
 
@@ -663,17 +666,17 @@ color: #6f6f6f;
 
                                 <ul class="list-unstyled">
 
-                                    <li><i class="material-icons">done</i><b>265MB</b> Memory</li>
+                                    <li><i class="material-icons">done</i><b>AAA</b> BBB</li>
 
-                                    <li><i class="material-icons">done</i><b>1</b> User</li>
+                                     <li><i class="material-icons">done</i><b>AAA</b> BBB</li>
 
-                                    <li><i class="material-icons">done</i><b>1</b> Website</li>
+                                     <li><i class="material-icons">done</i><b>AAA</b> BBB</li>
 
-                                    <li><i class="material-icons">done</i><b>1</b> Domain</li>
+                                     <li><i class="material-icons">done</i><b>AAA</b> BBB</li>
 
-                                    <li><i class="material-icons">done</i><b>Unlimeted</b> Bandwitch</li>
+                                     <li><i class="material-icons">done</i><b>AAA</b> BBB</li>
 
-                                    <li><i class="material-icons">done</i><b>24/7</b> Support</li>
+                                     <li><i class="material-icons">done</i><b>AAA</b> BBB</li>
 
                                 </ul>
 
@@ -681,7 +684,7 @@ color: #6f6f6f;
 
                             <div class="pricing-footer">
 
-                                <a href="#" class="btn btn-blue">Select</a>
+                                <a href="#" class="btn btn-blue">보러가기</a>
 
                             </div>
 
@@ -697,15 +700,15 @@ color: #6f6f6f;
 
                             <div class="pricing-header" >
 
-                                <h3>Multiple Users</h3>
+                                <h3>날씨일정관리</h3>
 
                                 <h3>
 
-                                <span class="currency">$</span>
+                                <span class="currency">아이콘</span>
 
-                                <span class="amount">40</span>
+                                <span class="amount">1</span>
 
-                                <span class="period">/mo</span>
+                                <span class="period">2</span>
 
                                 </h3>
 
@@ -715,25 +718,24 @@ color: #6f6f6f;
 
                                 <ul class="list-unstyled">
 
-                                    <li><i class="material-icons">done</i><b>512MB</b> Memory</li>
+                                    <li><i class="material-icons">done</i><b>AAA</b> BBB</li>
 
-                                    <li><i class="material-icons">done</i><b>3</b> User</li>
+                                     <li><i class="material-icons">done</i><b>AAA</b> BBB</li>
 
-                                    <li><i class="material-icons">done</i><b>5</b> Website</li>
+                                     <li><i class="material-icons">done</i><b>AAA</b> BBB</li>
 
-                                    <li><i class="material-icons">done</i><b>7</b> Domain</li>
+                                     <li><i class="material-icons">done</i><b>AAA</b> BBB</li>
 
-                                    <li><i class="material-icons">done</i><b>Unlimeted</b> Bandwitch</li>
+                                     <li><i class="material-icons">done</i><b>AAA</b> BBB</li>
 
-                                    <li><i class="material-icons">done</i><b>24/7</b> Support</li>
-
+                                     <li><i class="material-icons">done</i><b>AAA</b> BBB</li>
                                 </ul>
 
                             </div>
 
                             <div class="pricing-footer">
 
-                                <a href="#" class="btn btn-blue">Select</a>
+                                <a href="#" class="btn btn-blue">보러가기</a>
 
                             </div>
 
@@ -749,15 +751,15 @@ color: #6f6f6f;
 
                             <div class="pricing-header">
 
-                                <h3>Developer</h3>
+                                <h3>날씨채팅</h3>
 
                                 <h3>
 
-                                <span class="currency">$</span>
+                                <span class="currency">아이콘</span>
 
-                                <span class="amount">60</span>
+                                <span class="amount">1</span>
 
-                                <span class="period">/mo</span>
+                                <span class="period">2</span>
 
                                 </h3>
 
@@ -767,25 +769,24 @@ color: #6f6f6f;
 
                                 <ul class="list-unstyled">
 
-                                    <li><i class="material-icons">done</i><b>1024MB</b> Memory</li>
+                                    <li><i class="material-icons">done</i><b>AAA</b> BBB</li>
 
-                                    <li><i class="material-icons">done</i><b>5</b> User</li>
+                                     <li><i class="material-icons">done</i><b>AAA</b> BBB</li>
 
-                                    <li><i class="material-icons">done</i><b>10</b> Website</li>
+                                     <li><i class="material-icons">done</i><b>AAA</b> BBB</li>
 
-                                    <li><i class="material-icons">done</i><b>10</b> Domain</li>
+                                     <li><i class="material-icons">done</i><b>AAA</b> BBB</li>
 
-                                    <li><i class="material-icons">done</i><b>Unlimeted</b> Bandwitch</li>
+                                     <li><i class="material-icons">done</i><b>AAA</b> BBB</li>
 
-                                    <li><i class="material-icons">done</i><b>24/7</b> Support</li>
-
+                                     <li><i class="material-icons">done</i><b>AAA</b> BBB</li>
                                 </ul>
 
                             </div>
 
                             <div class="pricing-footer">
 
-                                <a href="#" class="btn btn-blue">Select</a>
+                                <a href="#" class="btn btn-blue">보러가기</a>
 
                             </div>
 
@@ -826,8 +827,7 @@ color: #6f6f6f;
                     <!--**Team-Member**-->
 
                     <div class="thumbnail team-member">
-
-                        <img src="../../resources/assets/img/team-1.jpg" class="img-responsive img-circle" alt="team-1">
+                        <img src="<c:url value="/resources/ag"/>" class="img-responsive img-circle" alt="team-1">
 
                         <div class="caption">
 
@@ -866,12 +866,12 @@ color: #6f6f6f;
                     <!--**Team-Member**-->
 
                     <div class="thumbnail team-member">
-
-                        <img src="../../resources/assets/img/team-2.png" class="img-responsive img-circle" alt="team-2">
+                  
+                        <img src="<c:url value="/resources/assets/img/team-2.png"/>" alt="team-2">
 
                         <div class="caption">
 
-                        <h4>정승우<br/>(Jung-Seungwu)</h4>
+                        <h4>정승우<br/>(Jung-seungwu)</h4>
 
                             <h6>Programmer</h6>
 
@@ -1003,9 +1003,9 @@ color: #6f6f6f;
 
             <div class="row">
 
-                <h2>Clients Trust Us</h2>
+                <h2>다양한 날씨</h2>
 
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odio, optio.</p>
+                <p>맑음, 흐림, 비, 태풍 등 날씨를 표현하는 것은 얼마나 있을까요?</p>
 
                 <!--// Clients Images //-->
 
@@ -1013,17 +1013,17 @@ color: #6f6f6f;
 
                     <div id="owl-clients">
 
-                        <div class="item"><img src="../../resources/assets/img/clients/c_logo01.png" class="center-block" alt="client"></div>
+                        <div class="item"><img src="../../resources/assets/img/clients/c_logo01.png" class="center-block" alt="날씨1"></div>
 
-                        <div class="item"><img src="../../resources/assets/img/clients/c_logo02.png" class="center-block" alt="client"></div>
+                        <div class="item"><img src="../../resources/assets/img/clients/c_logo02.png" class="center-block" alt="날씨2"></div>
 
-                        <div class="item"><img src="../../resources/assets/img/clients/c_logo03.png" class="center-block" alt="client"></div>
+                        <div class="item"><img src="../../resources/assets/img/clients/c_logo03.png" class="center-block" alt="날씨3"></div>
 
-                        <div class="item"><img src="../../resources/assets/img/clients/c_logo04.png" class="center-block" alt="client"></div>
+                        <div class="item"><img src="../../resources/assets/img/clients/c_logo04.png" class="center-block" alt="날씨4"></div>
 
-                        <div class="item"><img src="../../resources/assets/img/clients/c_logo05.png" class="center-block" alt="client"></div>
+                        <div class="item"><img src="../../resources/assets/img/clients/c_logo05.png" class="center-block" alt="날씨5"></div>
 
-                        <div class="item"><img src="../../resources/assets/img/clients/c_logo06.png" class="center-block" alt="client"></div>
+                        <div class="item"><img src="../../resources/assets/img/clients/c_logo06.png" class="center-block" alt="날씨6"></div>
 
                     </div>
 
@@ -1037,19 +1037,9 @@ color: #6f6f6f;
 
                         <i class="material-icons">mood</i>
 
-                        <p class="quote">Vivamus quam neque, aliquet ac faucibus ut, vestibulum. Nulla quis laoreet diam. Donec sed egestas ex, nec facilisis ante. Vivamus imperdiet odio. Cras luctus interdum sodales. Quisque quis odio dui.</p>
+                        <p class="quote">내용1</p>
 
-                        <h4>-John Doe, Company inc.</h4>
-
-                    </div>
-
-                    <div class="item">
-
-                        <i class="material-icons">mood</i>
-
-                        <p class="quote">Vivamus quam neque, aliquet ac faucibus ut, vestibulum. Nulla quis laoreet diam. Donec sed egestas ex, nec facilisis ante. Vivamus imperdiet odio. Cras luctus interdum sodales. Quisque quis odio dui.</p>
-
-                        <h4>-Jarl Doe, Company inc.</h4>
+                        <h4>날씨에대한 의견</h4>
 
                     </div>
 
@@ -1057,9 +1047,17 @@ color: #6f6f6f;
 
                         <i class="material-icons">mood</i>
 
-                        <p class="quote">Vivamus quam neque, aliquet ac faucibus ut, vestibulum. Nulla quis laoreet diam. Donec sed egestas ex, nec facilisis ante. Vivamus imperdiet odio. Cras luctus interdum sodales. Quisque quis odio dui.</p>
+                        <p class="quote">내용2</p>
+                        <h4>날씨에대한 의견</h4>
 
-                        <h4>-Adam Doe, Company inc.</h4>
+                    </div>
+
+                    <div class="item">
+
+                        <i class="material-icons">mood</i>
+
+                        <p class="quote">내용3</p>
+                        <h4>날씨에대한 의견</h4>
 
                     </div>
 
@@ -1087,15 +1085,15 @@ color: #6f6f6f;
 
             <div class="row">
 
-                <h3>Subscribe to get early access!</h3>
+                <h3>이메일을 보내서 날씨서비스를 구독해보세요!</h3>
 
                 <div class="form-container">
 
                     <form class="form-inline">
 
-                        <input type="email" class="form-control" id="newsletter-form" placeholder="Email" required="required">
+                        <input type="email" class="form-control" id="newsletter-form" placeholder="이메일" required="required">
 
-                        <button type="submit" class="btn btn-white">Subscribe</button>
+                        <button type="submit" class="btn btn-white">보내기</button>
 
                     </form>
 
@@ -1121,11 +1119,11 @@ color: #6f6f6f;
 
         <div class="container">
 
-            <h2>Contact Us</h2>
+            <h2>개발장소</h2>
 
-            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr</p>
+            <h3>PlayData</h3>
 
-            <p>sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
+            <p>날씨서비스 매일날로먹기는 플레이데이터 빅데이터 플랫폼5기에서 제작된 프로젝트 입니다.</p>
 
         </div>
 
@@ -1141,10 +1139,10 @@ color: #6f6f6f;
 
                         <i class="material-icons">place</i>
 
-                        <h4>Address</h4>
+                        <h4>주소</h4>
 
-                        <p>PABox 13592, Lorem Street Ipsum Dolor, Victoria 8007, USA</p>
-
+                        <p>서울시 서초구 효령로 335 (서초동 1604-19)</p>
+                  <p><a href="https://playdata.io/">https://playdata.io</a></p>
                     </div>
 
                 </div>
@@ -1155,9 +1153,7 @@ color: #6f6f6f;
 
                         <i class="material-icons">phone</i>
 
-                        <h4>Call Us On</h4>
-
-                        <p>1-834-527-6940</p>
+                        <h4>전화번호</h4>
 
                         <p>1-834-527-6940</p>
 
@@ -1171,11 +1167,10 @@ color: #6f6f6f;
 
                         <i class="material-icons">email</i>
 
-                        <h4>Email us on</h4>
+                        <h4>이메일 E-mail</h4>
 
-                        <p>lorem@xyz.com</p>
+                        <p>playdata@playdata.io</p>
 
-                        <p>lorem@xyz.com</p>
 
                     </div>
 
@@ -1238,7 +1233,7 @@ color: #6f6f6f;
 
             <div class="container">
 
-                <h2>Drop us a Line</h2>
+                <h2>저희에게 의견을 보내주세요!</h2>
 
                 <form class="contact-form">
 
@@ -1246,13 +1241,13 @@ color: #6f6f6f;
 
                         <div class="form-group">
 
-                            <input type="text" class="form-control" placeholder="ID or UserName" required="required">
+                            <input type="text" class="form-control" placeholder="아이디 " required="required">
 
                         </div>
 
                         <div class="form-group">
 
-                            <input type="email" class="form-control" placeholder="Email" required="required">
+                            <input type="email" class="form-control" placeholder="이메일 (E-mail)" required="required">
 
                         </div>
 
@@ -1262,13 +1257,13 @@ color: #6f6f6f;
 
                         <div class="form-group">
 
-                            <textarea class="form-control" rows="3" placeholder="Message"></textarea>
+                            <textarea class="form-control" rows="3" placeholder="하고싶으신 말"></textarea>
 
                         </div>
 
                     </div>
 
-                    <button type="submit" class="btn btn-blue">Send Message</button>
+                    <button type="submit" class="btn btn-blue">의견 보내기</button>
 
                 </form>
 
@@ -1300,7 +1295,7 @@ color: #6f6f6f;
 
                     <hr>
 
-                    <h5 class="pull-left">Vortex, &copy;2016 All rights reserved</h5>
+                    <h5 class="pull-left">만든시기, &copy;2020년에 걸쳐서</h5>
 
                     <ul class="liste-unstyled pull-right">
 
@@ -1333,7 +1328,7 @@ color: #6f6f6f;
     <!-- Modal -->
 
 
-
+   
     <div class="modal fade" id="SignIn" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 
         <div class="modal-dialog" role="document">
@@ -1385,7 +1380,7 @@ color: #6f6f6f;
                   
                   &nbsp;
                         <div class="form-group text-center">
-                            <button type="submit" class="btn btn-blue btn-block">가입하기</button>
+                            <button type="submit" class="btn btn-blue btn-block" >가입하기</button>
                         </div>
                   <div class="txt1 text-center p-t-10 p-b-5">
                   <span>
@@ -1420,7 +1415,43 @@ color: #6f6f6f;
         </div>
 
     </div>
+    
+   
+<!--    =========================================================================================================
+            Social Floating
+   ========================================================================================================= -->
+      
+      <div id="socialfloating" class="contact-bar left" style="left: 0px;">
 
+
+         <a href="https://www.facebook.com/" class="cb-link cb-anchor" style="background-color: #3b5998">
+         <i class="facebook icon"></i>
+         </a>
+         
+         <a href="https://open.kakao.com/o/sKmnm5pc" class="cb-link cb-anchor" style="background-color: #f7e600">
+         <i><img src="<c:url value="/resources/images/icon/kakao-talk.png"/>"></i>
+         </a>
+
+         <a href="https://twitter.com/" class="cb-link cb-anchor" style="background-color: #00aced">
+         <i class="twitter icon"></i>
+         </a>
+
+         
+         <a href="https://www.youtube.com/" class="cb-link cb-anchor" style="background-color: #c4302b">
+         <i class="youtube icon"></i>
+         </a>
+         
+
+         <a href="tel:+10-0000-0000" class="cb-link cb-anchor separated" style="background-color: #EC8A74;">
+         <i class="phone icon"></i>
+         </a>
+
+         <a href="mailto:evom1234@gmail.com" class="cb-link cb-anchor" style="background-color: skyblue;">
+         <i class="envelope icon"></i>
+         </a>
+         </div>
+      
+      
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
       <script src="<c:url value="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js" />"></script>
       
@@ -1430,11 +1461,14 @@ color: #6f6f6f;
       <script src="<c:url value="/resources/assets/js/plugins/bootsnav_files/js/bootsnav.js" />"></script>
       <script src="<c:url value="/resources/assets/js/plugins/typed.js-master/typed.js-master/dist/typed.min.js" />"></script>
       
+      
       <script src="<c:url value="/resources/assets/js/plugins/typed.js-master/typed.js-master/dist/typed.min.js" />"></script>
       <script src="<c:url value="/resources/assets/js/plugins/Magnific-Popup-master/Magnific-Popup-master/dist/jquery.magnific-popup.js" />"></script>
       <script src="<c:url value="/resources/assets/js/plugins/particles.js-master/particles.js-master/particles.min.js" />"></script>
       <script src="<c:url value="/resources/assets/js/particales-script.js" />"></script>
       <script src="<c:url value="/resources/assets/js/main.js" />"></script>
+      <script src="<c:url value="/resources/js/jquery.socialfloating.js" />"></script>
+     <script src="<c:url value="/resources/js/demo.js" />"></script>
 
 </body>
 

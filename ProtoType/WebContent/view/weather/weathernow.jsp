@@ -12,10 +12,6 @@ String loginnickname =(String) (session.getAttribute("nickname")==null ? "null" 
 List<String[]> weather = (List<String[]>) request.getAttribute("weather"); %>
 </head>
 <body>
-<h1>**현재 날씨**</h1>
-<p>	로그인 id : <%=loginid%><br>
-	로그인 nickname : <%=loginnickname%></p>
-<hr>
 <%
 for (int i = 0; i < weather.size(); i++) {
 	if (i == 0) {
