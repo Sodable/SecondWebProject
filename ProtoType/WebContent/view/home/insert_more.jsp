@@ -199,10 +199,12 @@
 </head>
 <body>
 	<h3>** 추가 회원 정보를 입력하세요 **</h3>
-		<%String loginid =(String) session.getAttribute("id");%>
-	<p>
-		로그인 id :
-		<%=loginid%></p>
+<%
+String loginid =(String) (session.getAttribute("id")==null ? "null" : session.getAttribute("id"));
+String loginnickname =(String) (session.getAttribute("nickname")==null ? "null" : session.getAttribute("nickname"));
+%>
+<p>	로그인 id : <%=loginid%><br>
+	로그인 nickname : <%=loginnickname%></p>
 	<form action="/ProtoType/member/regimore.do" method="post">
 		아이디 : <input type="text" name="id" value="<%=loginid%>" readonly="readonly"/><br /> 
 		닉네임 : <input type="text" name="nickname"/><br/>		

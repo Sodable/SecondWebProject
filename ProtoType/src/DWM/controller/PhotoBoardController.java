@@ -14,6 +14,7 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,6 +27,7 @@ import org.springframework.web.servlet.ModelAndView;
 import DWM.action.MyAction;
 import DWM.biz.MemberBiz;
 import DWM.biz.PhotoBoardBiz;
+import DWM.validate.PhotoBoardValidator;
 import DWM.vo.MemberVO;
 import DWM.vo.PhotoBoardVO;
 
@@ -38,9 +40,11 @@ public class PhotoBoardController {
 	@Autowired
 	private MemberBiz memberbiz ;
 	private MyAction myaction = new MyAction();
+	@Autowired
+	private PhotoBoardValidator photoboardvalidator;
 
 	@RequestMapping(path = "/view")
-	public ModelAndView view(@RequestParam("date") String date, @RequestParam("pagenum") int pagenum, @SessionAttribute("id") String id) {
+	public ModelAndView view(@RequestParam("date") String date, @RequestParam("pagenum") int pagenum, @RequestParam("id") String id) {
 		//페이지 디폴트
 		if (pagenum == 0) {
 			pagenum = 1;
@@ -110,7 +114,14 @@ public class PhotoBoardController {
 	}
 
 	@RequestMapping(path = "/write.do", method = RequestMethod.POST)
-	public ModelAndView writeDo(@ModelAttribute("photoBoardVO") PhotoBoardVO photoBoardVO) {
+	public ModelAndView writeDo(@ModelAttribute("photoBoardVO") PhotoBoardVO photoBoardVO,BindingResult result) {
+
+		//1. 유효성 검사
+		photoboardvalidator.validate(photoBoardVO, result);
+		if(result.hasErrors()) {
+			return write(photoBoardVO,photoBoardVO.getId());
+		}
+		
 		MultipartFile file = photoBoardVO.getImagefile();
 		String filename = file.getOriginalFilename();
 

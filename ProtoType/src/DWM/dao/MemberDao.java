@@ -9,12 +9,21 @@ import org.springframework.stereotype.Repository;
 
 import DWM.mapper.UserMapper;
 import DWM.vo.MemberVO;
+import DWM.vo.OnlineMemberVO;
 
 @Repository
 public class MemberDao {
 
 	@Autowired
 	private SqlSessionFactory factory;
+	
+	public SqlSessionFactory getFactory() {
+		return factory;
+	}
+
+	public void setFactory(SqlSessionFactory factory) {
+		this.factory = factory;
+	}
 
 	public String insert(MemberVO vo) {
 		String result = null;
@@ -145,6 +154,34 @@ public class MemberDao {
 			e.printStackTrace();
 		}
 		return res;
+	}
+
+	public List<OnlineMemberVO> memberanaly(String date) {
+		List<OnlineMemberVO> memberlist = null;
+		date = "%"+date+"%";
+		
+		try (SqlSession session = factory.openSession();) {
+			UserMapper mapper = session.getMapper(UserMapper.class);
+			memberlist = mapper.selectOnlineMember(date);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return memberlist;
+	}
+
+	public int todaytotalnum(String date) {
+		List<OnlineMemberVO> memberlist = null;
+		int todaytotalnum = 0;
+		date = "%"+date+"%";
+		
+		try (SqlSession session = factory.openSession();) {
+			UserMapper mapper = session.getMapper(UserMapper.class);
+			memberlist = mapper.selectTodayMember(date);
+			todaytotalnum = memberlist.size();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return todaytotalnum;
 	}
 
 }

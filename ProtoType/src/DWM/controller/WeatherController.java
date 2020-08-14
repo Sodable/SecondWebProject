@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import DWM.action.MyAction;
-import DWM.biz.BoardBiz;
 import DWM.biz.MemberBiz;
 import DWM.vo.MemberVO;
 

@@ -1,5 +1,7 @@
 package DWM.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,13 +13,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import DWM.biz.BoardBiz;
 import DWM.biz.FreeBoardBiz;
 import DWM.biz.MasterBiz;
 import DWM.biz.MemberBiz;
 import DWM.biz.PhotoBoardBiz;
 import DWM.vo.FreeBoardVO;
 import DWM.vo.MemberVO;
+import DWM.vo.OnlineMemberVO;
 import DWM.vo.PhotoBoardVO;
 
 @Controller
@@ -42,6 +44,22 @@ public class MasterController {
 	public ModelAndView memberlist() {
 		List<MemberVO> memberlist = masterbiz.memberlist();
 		return new ModelAndView("master/memberlist","memberlist",memberlist);
+	};
+	
+	@RequestMapping(path="/memberanaly")
+	public ModelAndView memberanaly(@RequestParam("pagenum") int pagenum) {
+		
+		Date datenow = new Date();
+		SimpleDateFormat today = new SimpleDateFormat("yyyy-MM-dd");
+		String date = today.format(datenow);
+		
+		List<OnlineMemberVO> memberlist = masterbiz.memberanaly(date);
+		int todaytotalnum = masterbiz.todaytotalnum(date);
+		
+		ModelAndView mav= new ModelAndView("master/memberanaly","memberlist",memberlist);
+		mav.addObject("pagenum", pagenum);
+		mav.addObject("todaytotalnum", todaytotalnum);
+		return mav;
 	};
 	
 	@RequestMapping(path="/memberdelete")

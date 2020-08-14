@@ -9,8 +9,6 @@
 </head>
 <body>
 <c:if test="${!empty myresult }">
-	<!-- 세션에 id 등록 -->
-	<%session.setAttribute("id", request.getAttribute("myresult")); %>
 	<c:redirect url="/" />
 </c:if>
 

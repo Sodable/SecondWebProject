@@ -34,6 +34,5 @@ public class MemberBiz {
 	public int delete(String id) {
 		return memberdao.delete(id);
 	}
-	
 
 }

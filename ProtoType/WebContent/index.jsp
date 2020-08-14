@@ -17,17 +17,19 @@
 
 
 
-<body>
+<body onunload="/ProtoType/member/logout">
 	<h2>** main으로 시험해보자**</h2>
-		<%String loginid =(String) session.getAttribute("id");%>
-	<p>
-		로그인 id :
-		<%=loginid%></p>
+		<%
+		String loginid =(String) (session.getAttribute("id")==null ? "null" : session.getAttribute("id"));
+		String loginnickname =(String) (session.getAttribute("nickname")==null ? "null" : session.getAttribute("nickname"));
+		%>
+	<p>	로그인 id : <%=loginid%><br>
+		로그인 nickname : <%=loginnickname%></p>
 
 
 	<a href="index.jsp">메인</a><br>
 	<a href="/ProtoType/freeboard/view?pagenum=1">자유게시판</a><br>
-	<a href="/ProtoType/photoboard/view?date=today&pagenum=1" onclick="alert()">포토게시판</a><br>
+	<a href="/ProtoType/photoboard/view?date=today&pagenum=1&id=<%=loginid%>">포토게시판</a><br>
 	
 	<%if(session.getAttribute("id")==null){ %>
 	<hr>

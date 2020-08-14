@@ -24,6 +24,12 @@ if (!photolist.isEmpty()) {
 <body>
 <h2>**사진게시판 게시글 목록**</h2>
 <hr>
+<%
+String loginid =(String) (session.getAttribute("id")==null ? "null" : session.getAttribute("id"));
+String loginnickname =(String) (session.getAttribute("nickname")==null ? "null" : session.getAttribute("nickname"));
+%>
+<p>	로그인 id : <%=loginid%><br>
+	로그인 nickname : <%=loginnickname%></p>
 총 게시물 : <%=itemnum %> 개
 <c:if test="${!empty photolist }">
 <table border="1">

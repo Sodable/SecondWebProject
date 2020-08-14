@@ -8,7 +8,8 @@
 <meta http-equiv="Content-type" content="text/html; charset=UTF-8">
 <title>**자유게시판**</title>
 <%
-String loginid =(String) session.getAttribute("id");
+String loginid =(String) (session.getAttribute("id")==null ? "null" : session.getAttribute("id"));
+String loginnickname =(String) (session.getAttribute("nickname")==null ? "null" : session.getAttribute("nickname"));
 List<FreeBoardVO> freelist = (List<FreeBoardVO>) request.getAttribute("freelist"); 
 
 //페이지 부분 이부분을 컨트롤러에서 get으로 보내주면 검색하기 편할듯 
@@ -16,17 +17,13 @@ int pagenum = (int) request.getAttribute("pagenum"); // 입력된 페이지 , �
 int itemnum = (int) request.getAttribute("itemnum"); // 게시물 총 갯수 받아오기
 int totalpage = (int) itemnum/10 + 1;
 int pageflag = (int) (pagenum-1)/5+1;
-if(!freelist.isEmpty()){
-	int fromIndex = (pagenum-1)*10;
-	int toIndex = ((pagenum*10 >itemnum) ? itemnum : pagenum*10 );
-	freelist = freelist.subList(fromIndex, toIndex);
-}
 //================================================================
 %>
 </head>
 <body>
 <h1> ** 자유 게시판 **</h1>
-<p>	로그인 id :<%=loginid%></p>
+	<p>	로그인 id : <%=loginid%><br>
+		로그인 nickname : <%=loginnickname%></p>
 <hr>
 <table board="0">
 	<tr >
@@ -44,8 +41,13 @@ if(!freelist.isEmpty()){
 		<td><%=vo.getWrite_date() %></td>
 		<td><%=vo.getView_count() %></td>
 	</tr>
-	<%}} %>
-	<% for(FreeBoardVO vo : freelist) {%>
+	<%}} 
+	if(!freelist.isEmpty()){
+		int fromIndex = (pagenum-1)*10;
+		int toIndex = ((pagenum*10 >itemnum) ? itemnum : pagenum*10 );
+		freelist = freelist.subList(fromIndex, toIndex);
+	} 
+	for(FreeBoardVO vo : freelist) {%>
 	<tr>
 		<td><%=vo.getCount() %></td>
 		<td><%=vo.getFb_weather() %></td>
@@ -67,7 +69,7 @@ if(!freelist.isEmpty()){
 <a href="/ProtoType/freeboard/view?pagenum=<%=(pagenum-1)/5*5+6%>">다음</a>
 <%} %>
 <hr>
-<%if(loginid!=null) {%>
+<%if(!loginid.equals("null")) {%>
 <form action="/ProtoType/freeboard/write">
 <input type="submit" value="글 작성"/>
 </form>

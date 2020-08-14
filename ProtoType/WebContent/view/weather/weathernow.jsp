@@ -6,12 +6,15 @@
 <head>
 <meta charset="UTF-8">
 <title>**현재 날씨**</title>
-<% List<String[]> weather = (List<String[]>) request.getAttribute("weather"); %>
+<%
+String loginid =(String) (session.getAttribute("id")==null ? "null" : session.getAttribute("id"));
+String loginnickname =(String) (session.getAttribute("nickname")==null ? "null" : session.getAttribute("nickname"));
+List<String[]> weather = (List<String[]>) request.getAttribute("weather"); %>
 </head>
 <body>
 <h1>**현재 날씨**</h1>
-<%String loginid =(String) session.getAttribute("id");%>
-<p>	로그인 id :<%=loginid%></p>
+<p>	로그인 id : <%=loginid%><br>
+	로그인 nickname : <%=loginnickname%></p>
 <hr>
 <%
 for (int i = 0; i < weather.size(); i++) {

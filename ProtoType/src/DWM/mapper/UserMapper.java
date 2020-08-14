@@ -9,6 +9,7 @@ import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Repository;
 
 import DWM.vo.MemberVO;
+import DWM.vo.OnlineMemberVO;
 
 @Repository
 public interface UserMapper {
@@ -39,5 +40,11 @@ public interface UserMapper {
 	
 	@Select("select * from member right outer join member_info using(id) where id = #{id}")
 	public MemberVO memberSearch(String id);
-	
+
+	@Select("select * from online_member where online_flag = 1 and login_date like #{date}")
+	public List<OnlineMemberVO> selectOnlineMember(String date);
+
+	@Select("select * from online_member where login_date like #{date}")
+	public List<OnlineMemberVO> selectTodayMember(String date);
+
 }

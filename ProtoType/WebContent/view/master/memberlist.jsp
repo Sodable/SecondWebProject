@@ -23,6 +23,12 @@ if (!memberlist.isEmpty()) {
 <body>
 <h2>**회원 목록**</h2>
 <hr>
+<%
+String loginid =(String) (session.getAttribute("id")==null ? "null" : session.getAttribute("id"));
+String loginnickname =(String) (session.getAttribute("nickname")==null ? "null" : session.getAttribute("nickname"));
+%>
+<p>	로그인 id : <%=loginid%><br>
+	로그인 nickname : <%=loginnickname%></p>
 총 회원 수 : <%=itemnum %> 명
 <c:if test="${!empty memberlist }">
 <table border="1">

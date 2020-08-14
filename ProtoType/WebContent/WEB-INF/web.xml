@@ -15,6 +15,10 @@
 		<param-name>contextConfigLocation</param-name>
 		<param-value>/WEB-INF/ApplicationContext.xml</param-value>
 	</context-param>
+	
+    <session-config>
+        <session-timeout>10</session-timeout>
+    </session-config>
 
 	<filter>
 		<filter-name>encodingFilter</filter-name>

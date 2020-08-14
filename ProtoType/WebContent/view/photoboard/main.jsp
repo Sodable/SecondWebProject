@@ -9,7 +9,8 @@
 <title>**포토게시판**</title>
 <% 
 // 로그인 아이디 받아오기
-String loginid = (String) session.getAttribute("id");
+String loginid =(String) (session.getAttribute("id")==null ? "null" : session.getAttribute("id"));
+String loginnickname =(String) (session.getAttribute("nickname")==null ? "null" : session.getAttribute("nickname"));
 //================================================================
 
 // 당일 게시물들 받아오기
@@ -47,7 +48,8 @@ if(!photolist.isEmpty()){
 </head>
 <body>
 <h1> ** 포토 게시판 **</h1>
-<p>로그인 id :	<%=loginid%></p>
+<p>	로그인 id : <%=loginid%><br>
+	로그인 nickname : <%=loginnickname%></p>
 <hr>
 		<!-- 데일리 탑3 부분 -->
 <%=date%>&nbsp;TOP&nbsp;3<br>
@@ -85,16 +87,15 @@ if(i%4==0){%>
 	<%=nickname.get(photolist.get(i).getId()) %>
 	(<%=photolist.get(i).getId() %>)<br>
 	날씨 : <%=photolist.get(i).getPb_weather() %><br>
-	<%if(loginid!=null) {
+	<%if(!loginid.equals("null")) {
 	int cnt = 0;
-	%>
-	<%for(PhotoBoardVO vo : likelist){ 
+	for(PhotoBoardVO vo : likelist){ 
 		if(vo.getCount()==photolist.get(i).getCount()){%>
 			<a href="/ProtoType/photoboard/recommandcancel?date=<%=date %>&pagenum=<%=pagenum %>&count=<%=photolist.get(i).getCount() %>&id=<%=loginid %>">추천 취소</a><br>
 		<%}else{
 			cnt++;
-		}%>
-	<%}
+		}
+	}
 	if(cnt==likelist.size()){	
 	cnt=0;%>
 		<a href="/ProtoType/photoboard/recommand?date=<%=date %>&pagenum=<%=pagenum %>&count=<%=photolist.get(i).getCount() %>&id=<%=loginid %>">추천 하기</a><br>
@@ -121,7 +122,7 @@ if(i%4==0){%>
 <a href="/ProtoType/photoboard/view?date=today&pagenum=<%=(pagenum-1)/5*5+6%>">다음</a>
 <%} %>
 <hr>
-	<%if(loginid!=null) {%>
+	<%if(!loginid.equals("null")) {%>
 <form action="/ProtoType/photoboard/write" method="post">
 	<input type="text" name="id" value="<%=loginid %>" hidden="true"/>
 <input type="submit" value="글 작성"/>
