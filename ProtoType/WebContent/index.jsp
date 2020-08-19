@@ -41,7 +41,7 @@
 	<a href="/ProtoType/weather/future?id=<%=loginid%>">날씨 예보 페이지</a><br>
 	<hr>
 	<a href="/ProtoType/member/logout">로그아웃</a><br>
-	<a href="/ProtoType/member/regimore">추가 정보 등록</a>
+	<a href="/ProtoType/member/mymain">마이페이지</a><br>
 	<%} %>
 	
 	<%if((session.getAttribute("id")!=null)&&(session.getAttribute("id").equals("master"))){ %>

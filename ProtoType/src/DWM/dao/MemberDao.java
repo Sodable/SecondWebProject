@@ -16,7 +16,7 @@ public class MemberDao {
 
 	@Autowired
 	private SqlSessionFactory factory;
-	
+
 	public SqlSessionFactory getFactory() {
 		return factory;
 	}
@@ -30,7 +30,7 @@ public class MemberDao {
 
 		try (SqlSession session = factory.openSession();) {
 			UserMapper mapper = session.getMapper(UserMapper.class);
-			
+
 			int n = mapper.insertMember(vo);
 			int n2 = mapper.insertMemberInfo(vo.getId());
 			if (n > 0) {
@@ -70,7 +70,7 @@ public class MemberDao {
 
 		try (SqlSession session = factory.openSession();) {
 			UserMapper mapper = session.getMapper(UserMapper.class);
-			
+
 			int n = mapper.updateMemberInfo(vo);
 			if (n > 0) {
 				if (!vo.getNickname().equals(null)) {
@@ -88,36 +88,62 @@ public class MemberDao {
 		return result;
 	}
 
-	public MemberVO getLocale(String id) {
-		MemberVO res = null;
-		
+	public String insert_loc(MemberVO vo) {
+		String result = null;
+
 		try (SqlSession session = factory.openSession();) {
 			UserMapper mapper = session.getMapper(UserMapper.class);
-			
-			res = mapper.selectMemberInfo(id);
+
+			int n = mapper.insertMemberLoc(vo);
+			if (n > 0) {
+				result = vo.getId();
+
+				n = mapper.updateMemberlocflag1(vo);
+				n = mapper.updateMemberlocflag2(vo);
+				session.commit();
+			} else {
+				session.rollback();
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+		return result;
+	}
+
+	public MemberVO getLocale(String id) {
+		MemberVO res = null;
+
+		try (SqlSession session = factory.openSession();) {
+			UserMapper mapper = session.getMapper(UserMapper.class);
+
+			res = mapper.selectMemberLoc(id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
 		return res;
 	}
 
 	public String getNickname(String id) {
 		MemberVO res = null;
-		
+		String result = null;
+
 		try (SqlSession session = factory.openSession();) {
 			UserMapper mapper = session.getMapper(UserMapper.class);
-			
+
 			res = mapper.selectMemberInfo(id);
+			if(res!=null) {
+				result = res.getNickname();
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return res.getNickname();
+		return result;
 	}
 
 	public List<MemberVO> memberlist() {
 		List<MemberVO> memberlist = null;
-		
+
 		try (SqlSession session = factory.openSession();) {
 			UserMapper mapper = session.getMapper(UserMapper.class);
 			memberlist = mapper.selectMemberList();
@@ -131,7 +157,7 @@ public class MemberDao {
 		int n = 0;
 		try (SqlSession session = factory.openSession();) {
 			UserMapper mapper = session.getMapper(UserMapper.class);
-			
+
 			n = mapper.deleteMember(id);
 			if (n > 0) {
 				session.commit();
@@ -143,7 +169,7 @@ public class MemberDao {
 		}
 		return n;
 	}
-	
+
 	public MemberVO search(String id) {
 		MemberVO res = null;
 
@@ -158,8 +184,8 @@ public class MemberDao {
 
 	public List<OnlineMemberVO> memberanaly(String date) {
 		List<OnlineMemberVO> memberlist = null;
-		date = "%"+date+"%";
-		
+		date = "%" + date + "%";
+
 		try (SqlSession session = factory.openSession();) {
 			UserMapper mapper = session.getMapper(UserMapper.class);
 			memberlist = mapper.selectOnlineMember(date);
@@ -172,8 +198,8 @@ public class MemberDao {
 	public int todaytotalnum(String date) {
 		List<OnlineMemberVO> memberlist = null;
 		int todaytotalnum = 0;
-		date = "%"+date+"%";
-		
+		date = "%" + date + "%";
+
 		try (SqlSession session = factory.openSession();) {
 			UserMapper mapper = session.getMapper(UserMapper.class);
 			memberlist = mapper.selectTodayMember(date);

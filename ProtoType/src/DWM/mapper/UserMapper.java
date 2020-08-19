@@ -21,13 +21,18 @@ public interface UserMapper {
 	public int insertMemberInfo(String id);
 	
 	@Update("update member_info " + 
-			"set nickname = #{nickname}, gender = #{gender}, age = #{age}, " + 
-			"locale = #{locale}, job = #{job}, job_locale = #{locale}" + 
+			"set nickname = #{nickname}, gender = #{gender}, age = #{age}, job = #{job} " + 
 			"where id = #{id}")
 	public int updateMemberInfo(MemberVO vo);
 	
+	@Insert("insert into member_loc values(#{id},#{locale},#{locale},1)")
+	public int insertMemberLoc(MemberVO vo);
+	
 	@Select("select * from member_info where id = #{id}")
 	public MemberVO selectMemberInfo(String id);
+
+	@Select("select * from member_loc where id = #{id} and loc_flag = 1")
+	public MemberVO selectMemberLoc(String id);
 	
 	@Select("select * from member where password= #{password} and id = #{id}")
 	public MemberVO loginMember(MemberVO vo);
@@ -46,5 +51,11 @@ public interface UserMapper {
 
 	@Select("select * from online_member where login_date like #{date}")
 	public List<OnlineMemberVO> selectTodayMember(String date);
+	
+	@Update("update member_loc set loc_flag = 0 where id = #{id}")
+	public int updateMemberlocflag1(MemberVO vo);
+
+	@Update("update member_loc set loc_flag = 1 where id = #{id} and locale = #{locale}")
+	public int updateMemberlocflag2(MemberVO vo);
 
 }

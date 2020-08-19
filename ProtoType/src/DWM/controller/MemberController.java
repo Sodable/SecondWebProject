@@ -38,6 +38,12 @@ public class MemberController {
 		return mav;
 	}
 
+	@RequestMapping(path = "/mymain")
+	public ModelAndView mymain() {
+		ModelAndView mav = new ModelAndView("home/mypage_main");
+		return mav;
+	}
+
 	@RequestMapping(path = "/Insert.do")
 	public ModelAndView insert(MemberVO vo) {
 		String result = biz.insert(vo);
@@ -50,9 +56,22 @@ public class MemberController {
 		ModelAndView mav = new ModelAndView("home/insert_more");
 		return mav;
 	}
+	
+	@RequestMapping(path = "/regiloc")
+	public ModelAndView insert_loc() {
+		ModelAndView mav = new ModelAndView("home/insert_loc");
+		return mav;
+	}
 
 	@RequestMapping(path = "/regimore.do")
 	public ModelAndView insert_more(MemberVO vo) {
+		String result = biz.insert_more(vo);
+		ModelAndView mav = new ModelAndView("home/insert_result", "myresult", result);
+		return mav;
+	}
+	
+	@RequestMapping(path = "/regiloc.do")
+	public ModelAndView insert_loc(MemberVO vo) {
 		String[] xy = new String[] {"-1","-1"};
 		try {
 			xy = action.getXY(vo.getLocale());
@@ -61,7 +80,7 @@ public class MemberController {
 			System.out.println("좌표를 못찾았다");
 		}
 		vo.setLocale(vo.getLocale()+" "+xy[0]+" "+xy[1]);
-		String result = biz.insert_more(vo);
+		String result = biz.insert_loc(vo);
 		ModelAndView mav = new ModelAndView("home/insert_result", "myresult", result);
 		return mav;
 	}

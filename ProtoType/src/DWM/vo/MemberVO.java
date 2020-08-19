@@ -9,12 +9,10 @@ public class MemberVO {
 	private String nickname;
 	private String gender;
 	private int age;
-	private String locale;
-	private String locale_top;
-	private String locale_mdl;
-	private String locale_leaf;
 	private String job;
+	private String locale;
 	private String job_locale;
+	private int loc_flag;
 	
 	public MemberVO() {
 		super();
@@ -90,30 +88,6 @@ public class MemberVO {
 
 	public void setLocale(String locale) {
 		this.locale = locale;
-	}
-
-	public String getLocale_top() {
-		return locale_top;
-	}
-
-	public void setLocale_top(String locale_top) {
-		this.locale_top = locale_top;
-	}
-
-	public String getLocale_mdl() {
-		return locale_mdl;
-	}
-
-	public void setLocale_mdl(String locale_mdl) {
-		this.locale_mdl = locale_mdl;
-	}
-
-	public String getLocale_leaf() {
-		return locale_leaf;
-	}
-
-	public void setLocale_leaf(String locale_leaf) {
-		this.locale_leaf = locale_leaf;
 	}
 
 	public String getJob() {
