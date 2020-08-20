@@ -105,7 +105,13 @@ public class MemberVO {
 	public void setJob_locale(String job_locale) {
 		this.job_locale = job_locale;
 	}
-	
-	
 
+	public int getLoc_flag() {
+		return loc_flag;
+	}
+
+	public void setLoc_flag(int loc_flag) {
+		this.loc_flag = loc_flag;
+	}
+	
 }

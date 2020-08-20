@@ -1,5 +1,7 @@
 package DWM.biz;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -37,6 +39,14 @@ public class MemberBiz {
 
 	public int delete(String id) {
 		return memberdao.delete(id);
+	}
+
+	public List<MemberVO> getLocaleList(String id) {
+		return memberdao.getLocaleList(id);
+	}
+
+	public int updateFlag(MemberVO vo) {
+		return memberdao.updateFlag(vo);
 	}
 
 }

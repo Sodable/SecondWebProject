@@ -17,7 +17,7 @@
 		로그인 nickname : <%=loginnickname%></p>
 	<a href="/ProtoType/member/regimore">추가 정보 등록</a>
 	<a href="/ProtoType/member/regiloc">지역 정보 등록</a>
-<a href="">지역 정보 보기 및 사용 설정</a>
+<a href="/ProtoType/member/selectloc?id=<%=loginid%>">지역 정보 보기 및 사용 설정</a>
 
 </body>
 </html>

@@ -2,6 +2,7 @@ package DWM.controller;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,8 +13,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.ModelAndView;
 
 import DWM.action.LoginListener;
@@ -85,6 +89,26 @@ public class MemberController {
 		return mav;
 	}
 
+	@RequestMapping(path = "/selectloc")
+	public ModelAndView selectloc(@RequestParam("id") String id ) {
+		List<MemberVO> loclist = biz.getLocaleList(id);
+		ModelAndView mav = new ModelAndView("home/mypage_loc","loclist",loclist);
+		return mav;
+	}
+	
+	@RequestMapping(path = "/selectloc.do", method=RequestMethod.POST)
+	public ModelAndView doSelectloc(MemberVO vo) {
+		
+		int update = biz.updateFlag(vo);
+		ModelAndView mav=null;
+		if(update>0) {
+		mav = selectloc(vo.getId());
+		}else {
+			//update ½ÇÆÐ
+		}
+		return mav;
+	}
+	
 	@RequestMapping(path = "/login")
 	public ModelAndView login(@ModelAttribute MemberVO login) {
 		ModelAndView mav = new ModelAndView("home/login","login",login);

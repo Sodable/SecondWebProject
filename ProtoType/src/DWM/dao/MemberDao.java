@@ -132,7 +132,7 @@ public class MemberDao {
 			UserMapper mapper = session.getMapper(UserMapper.class);
 
 			res = mapper.selectMemberInfo(id);
-			if(res!=null) {
+			if (res != null) {
 				result = res.getNickname();
 			}
 		} catch (Exception e) {
@@ -208,6 +208,41 @@ public class MemberDao {
 			e.printStackTrace();
 		}
 		return todaytotalnum;
+	}
+
+	public List<MemberVO> getLocaleList(String id) {
+		List<MemberVO> list = null;
+
+		try (SqlSession session = factory.openSession();) {
+			UserMapper mapper = session.getMapper(UserMapper.class);
+			list = mapper.selectLocaleList(id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+	public int updateFlag(MemberVO vo) {
+		int n = 0;
+		try (SqlSession session = factory.openSession();) {
+			UserMapper mapper = session.getMapper(UserMapper.class);
+			System.out.println(vo.getId() + " : " + vo.getLocale());
+
+			n = mapper.updateMemberlocflag1(vo);
+			if (n > 0) {
+				n = mapper.updateMemberlocflag2(vo);
+				if (n > 0) {
+					session.commit();
+				} else {
+					session.rollback();
+				}
+			}else {
+				session.rollback();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return n;
 	}
 
 }

@@ -58,4 +58,7 @@ public interface UserMapper {
 	@Update("update member_loc set loc_flag = 1 where id = #{id} and locale = #{locale}")
 	public int updateMemberlocflag2(MemberVO vo);
 
+	@Select("select * from member_loc where id = #{id}")
+	public List<MemberVO> selectLocaleList(String id);
+
 }
