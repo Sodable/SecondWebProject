@@ -9,14 +9,13 @@
 </head>
 <body>
 <c:if test="${!empty myresult }">
-	${myresult }님 환영합니다<br>
-	<a href="/ProtoType/">홈 화면으로 이동</a>
+	<!-- 세션에 id 등록 -->
+	<%session.setAttribute("id", request.getAttribute("myresult")); %>
+	<c:redirect url="/view/home/home.jsp" />
 </c:if>
 
 <c:if test="${empty myresult }">
-	잘못 입력하셨습니다.<br>
-	다시 입력해 주세요<br>
-	<a href="/ProtoType/view/home/login.jsp"">다시 입력</a>
+	<c:redirect url="/?error=1" />
 </c:if>
 
 </body>

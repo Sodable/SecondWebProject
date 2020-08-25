@@ -7,6 +7,10 @@
 <head>
 <meta http-equiv="Content-type" content="text/html; charset=UTF-8">
 <title>**자유게시판**</title>
+		<%String loginid =(String) session.getAttribute("id");%>
+	<p>
+		로그인 id :
+		<%=loginid%></p>
 <% List<FreeBoardVO> viewbody = (List<FreeBoardVO>) request.getAttribute("viewbody"); %>
 </head>
 <body>
@@ -29,16 +33,18 @@
 <option>우박</option>
 <option>낙뢰</option>
 <option>안개</option>
+<%if((loginid!=null)&&(loginid.equals("master"))) {%>
+<option>공지 사항</option>
+<%} %>
 </select><br/>
 <label>제목</label>
 <input type="text" name="title" min="1" style="width: 500px " value="<%=viewbody.get(0).getTitle() %>"/><br>
-<label>파일 첨부</label><br><!-- 새창 띄워서 입력? -->
 <label>내용</label><br>
 <textarea cols="100" rows="10" name="body"><%=viewbody.get(0).getBody() %></textarea><br/>
 <input type="text" value="<%=viewbody.get(0).getId() %>" name="id" hidden="true"/>
 <input type="text" value="<%=viewbody.get(0).getCount() %>" name="count" hidden="true"/>
 <input type="submit" value="글 쓰기">
 </form>
-<a href="/ProtoType/freeboard/view">자유게시판으로 돌아가기</a>
+<a href="/ProtoType/freeboard/view?pagenum=1">자유게시판으로 돌아가기</a>
 </body>
 </html>

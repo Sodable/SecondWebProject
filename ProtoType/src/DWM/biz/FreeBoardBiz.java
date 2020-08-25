@@ -11,7 +11,7 @@ import DWM.vo.FreeBoardVO;
 
 @Service
 public class FreeBoardBiz {
-	
+
 	@Autowired
 	private FreeBoardDao freeboarddao;
 
@@ -33,6 +33,10 @@ public class FreeBoardBiz {
 
 	public int deleteView(int count) {
 		return freeboarddao.deleteView(count);
+	}
+
+	public List<FreeBoardVO> searchlist(String type, String search) {
+		return freeboarddao.searchlist(type, search);
 	}
 
 }

@@ -199,8 +199,12 @@
 </head>
 <body>
 	<h3>** 추가 회원 정보를 입력하세요 **</h3>
+		<%String loginid =(String) session.getAttribute("id");%>
+	<p>
+		로그인 id :
+		<%=loginid%></p>
 	<form action="/ProtoType/member/regimore.do" method="post">
-		아이디 : <input type="text" name="id"/><br /> 
+		아이디 : <input type="text" name="id" value="<%=loginid%>" readonly="readonly"/><br /> 
 		닉네임 : <input type="text" name="nickname"/><br/>		
 		성별 : <input type="radio" name="gender" value="남"/>남
 		<input type="radio" name="gender" value="여"/>여<br/>		
