@@ -8,7 +8,6 @@ import org.springframework.validation.Validator;
 import DWM.dao.MemberDao;
 import DWM.vo.MemberVO;
 
-//spring 에서 제공해주는 유효성 검사 클래스를 implements
 @Service("memberValidator")
 public class MemberValidator implements Validator {
 	@Autowired
@@ -16,7 +15,6 @@ public class MemberValidator implements Validator {
 
 	@Override
 	public boolean supports(Class<?> clazz) {
-		// 유효성 대상 클래스
 		return false;
 	}
 

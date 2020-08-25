@@ -8,8 +8,7 @@
 <meta http-equiv="Content-type" content="text/html; charset=UTF-8">
 <title>**자유게시판**</title>
 <%
-String loginid =(String) (session.getAttribute("id")==null ? "null" : session.getAttribute("id"));
-String loginnickname =(String) (session.getAttribute("nickname")==null ? "null" : session.getAttribute("nickname"));
+String loginid =(String) session.getAttribute("id");
 List<FreeBoardVO> freelist = (List<FreeBoardVO>) request.getAttribute("freelist"); 
 String type= (String) request.getAttribute("type");
 String search= (String) request.getAttribute("search");
@@ -29,8 +28,7 @@ if(!freelist.isEmpty()){
 </head>
 <body>
 <h1> ** 자유 게시판 **</h1>
-	<p>	로그인 id : <%=loginid%><br>
-		로그인 nickname : <%=loginnickname%></p>
+<p>	로그인 id :<%=loginid%></p>
 <hr>
 <table board="0">
 	<tr >

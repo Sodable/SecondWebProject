@@ -8,12 +8,6 @@
 <title>** 등록 결과 **</title>
 </head>
 <body>
-<%
-String loginid =(String) (session.getAttribute("id")==null ? "null" : session.getAttribute("id"));
-String loginnickname =(String) (session.getAttribute("nickname")==null ? "null" : session.getAttribute("nickname"));
-%>
-<p>	로그인 id : <%=loginid%><br>
-	로그인 nickname : <%=loginnickname%></p>
 <c:if test="${!empty myresult }">
 	${myresult }님의 고객 정보 등록이 완료 되었습니다.<br>
 	<a href="/ProtoType/index.jsp">홈 화면으로 이동</a>

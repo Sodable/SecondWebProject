@@ -8,15 +8,13 @@
 <meta http-equiv="Content-type" content="text/html; charset=UTF-8">
 <title>**자유게시판**</title>
 <%
-String loginid =(String) (session.getAttribute("id")==null ? "null" : session.getAttribute("id"));
-String loginnickname =(String) (session.getAttribute("nickname")==null ? "null" : session.getAttribute("nickname"));
+String loginid =(String) session.getAttribute("id");
 List<FreeBoardVO> viewbody = (List<FreeBoardVO>) request.getAttribute("viewbody"); 
 %>
 </head>
 <body>
 <h1> ** 자유 게시판 **</h1>
-<p>	로그인 id : <%=loginid%><br>
-	로그인 nickname : <%=loginnickname%></p>
+<p>	로그인 id :<%=loginid%></p>
 <hr>
 <label>날씨 : </label><%=viewbody.get(0).getFb_weather() %>
 <label>작성 날짜 : </label><%=viewbody.get(0).getWrite_date() %><br/>

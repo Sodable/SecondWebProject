@@ -9,12 +9,13 @@
 </head>
 <body>
 <c:if test="${!empty myresult }">
-	<c:redirect url="/" />
-<%-- 	<c:redirect url="/view/home/home.jsp" /> --%>
+	<!-- 세션에 id 등록 -->
+	<%session.setAttribute("id", request.getAttribute("myresult")); %>
+	<c:redirect url="/view/home/home.jsp" />
 </c:if>
 
 <c:if test="${empty myresult }">
-	<c:redirect url="/member/login?error=1" />
+	<c:redirect url="/?error=1" />
 </c:if>
 
 </body>

@@ -8,11 +8,9 @@ uri="http://www.springframework.org/tags/form" %>
 <head>
 <meta http-equiv="Content-type" content="text/html; charset=UTF-8">
 <title>**포토게시판**</title>
+		<%String loginid =(String) session.getAttribute("id");%>
+<% List<String[]> weather = (List<String[]>) request.getAttribute("weather"); %>
 <%
-String loginid =(String) (session.getAttribute("id")==null ? "null" : session.getAttribute("id"));
-String loginnickname =(String) (session.getAttribute("nickname")==null ? "null" : session.getAttribute("nickname"));
-List<String[]> weather = (List<String[]>) request.getAttribute("weather"); 
-
 String raintype = null;
 for (int i = 0; i < weather.size(); i++) {
 		if(weather.get(i)[0].equals("PTY")){
@@ -34,22 +32,14 @@ for (int i = 0; i < weather.size(); i++) {
 <body>
 <h1> ** 포토 게시판 글 작성**</h1>
 <hr>
-<p>	로그인 id : <%=loginid%><br>
-	로그인 nickname : <%=loginnickname%></p>
 
 <form:form action="/ProtoType/photoboard/write.do" method="post" 
 enctype="multipart/form-data" modelAttribute="photoBoardVO" >
 
 <label>제목</label>
 <form:input type="text" name="title" path="title" min="1" style="width: 500px "/><br>
-	<p style="color:red; font-weight:bold">
-		<form:errors path="title"/>
-	</p>
 <label>이미지 첨부</label>
 <form:input type="file" name="imagefile" path="imagefile"/><br>
-	<p style="color:red; font-weight:bold">
-		<form:errors path="imagefile"/>
-	</p>
 <form:input type="text" value="<%=raintype %>" name="pb_weather" path="pb_weather" hidden="true"/><br>
 <form:input type="text" value="<%=loginid%>" name="id" path="id" hidden="true"/>
 <input type="submit" value="글 쓰기">

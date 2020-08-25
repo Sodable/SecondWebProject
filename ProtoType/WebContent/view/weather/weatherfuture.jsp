@@ -6,15 +6,14 @@
 <head>
 <meta charset="UTF-8">
 <title>**날씨 예보**</title>
-<%
-String loginid =(String) (session.getAttribute("id")==null ? "null" : session.getAttribute("id"));
-String loginnickname =(String) (session.getAttribute("nickname")==null ? "null" : session.getAttribute("nickname"));
-List<String[]> weather = (List<String[]>) request.getAttribute("weather"); %>
+<% List<String[]> weather = (List<String[]>) request.getAttribute("weather"); %>
 </head>
 <body>
 <h1>**날씨 예보**</h1>
-<p>	로그인 id : <%=loginid%><br>
-	로그인 nickname : <%=loginnickname%></p>
+		<%String loginid =(String) session.getAttribute("id");%>
+	<p>
+		로그인 id :
+		<%=loginid%></p>
 <hr>
 <%
 int cnt = 0;

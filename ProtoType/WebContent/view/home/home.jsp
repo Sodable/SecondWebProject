@@ -2,19 +2,14 @@
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.Date" %>
 <%@ page import="java.text.SimpleDateFormat" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%
    Date nowTime = new Date();
    SimpleDateFormat sf = new SimpleDateFormat("지금 눈 떠 있는 시간 궁금하죠? : [yyyy년 MM월 dd일 a hh시 mm분]");
+   String loginid = (String) session.getAttribute("id");
 %>
-
-      <!-- 임시 로그인 -->
-      <%
-      session.setAttribute("id", "test");
-      String loginid = (String) session.getAttribute("id");
-      %>
-      
-      
-      
 <!DOCTYPE HTML>
 <!--
    Monochromed by TEMPLATED
@@ -37,10 +32,17 @@
       <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/style.css">
       <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/style-desktop.css">
       <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/style-1000px.css">
+      <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/floating.css">
       
-      <script src="resources/js/skel.min.js"></script>
-      <script src="resources/js/skel-panels.min.js"></script>
-      <script src="resources/js/init.js"></script>
+      
+      <script src="<c:url value="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js" />"></script>
+      <script src="<c:url value="/resources/js/jquery.easing.1.3.js" />"></script>
+      
+      
+     
+      <script src="<c:url value="resources/js/skel.min.js" />"></script>
+      <script src="<c:url value="resources/js/skel-panels.min.js" />"></script>
+      <script src=" <c:url value="resources/js/init.js" />"></script>
       
       <noscript>
          <link rel="stylesheet" href="css/skel-noscript.css" />
@@ -68,7 +70,6 @@
     		});
     	});
       </script>
-      
    </head>
    <body class="homepage">
 
@@ -87,10 +88,10 @@
                   <ul>
                      <li class="active"><a href="/ProtoType/member/login.do">매일날로먹기</a></li>
                      <li><a href="/ProtoType/freeboard/view?pagenum=1">소통의공간</a></li>
-                     <li><a href="/ProtoType/photoboard/view?date=today&pagenum=1&id=<%=loginid%>">데일리룩</a></li>
-                     <li><a href="twocolumn2.html">날씨달력</a></li>
-                     <li><a href="onecolumn.html">채팅관리</a></li>
-                     <li><a href="onecolumn.html">날씨에 대해서</a></li>
+                     <li><a href="/ProtoType/photoboard/view?date=today&pagenum=1&id=<%=loginid %>" onclick="">데일리룩</a></li>
+                     <li><a href="twocolumn2.html" onclick="alert('지역을 설정해주세요(현재구현X)')">날씨달력</a></li>
+                     <li><a href="onecolumn.html" onclick="alert('지역을 설정해주세요(현재구현X)')">채팅관리</a></li>
+                     <li><a href="onecolumn.html"onclick="alert('페이지 생성중')">날씨에 대해서</a></li>
                   </ul>
                </nav>
 
@@ -117,11 +118,12 @@
                      <section id="content">
                         <header>
                            <h2>현재 날씨가 궁금하시죠?</h2>
+                           <span class="byline">rutrum</span>
                         </header>
                         <div id="weather" class="byline"></div>
                         <p><a href="#" class="image full"><img src="images/pics02.jpg" alt=""></a></p>
                         <p><strong>Monochromed</strong></a>.</p>
-                        <a href="#" class="button">Read More</a>
+                        <a href="/ProtoType/weather/future?id=<%=loginid%>" class="button">View More</a>
                      </section>
                   </div>
                <!-- /Content -->
@@ -150,7 +152,60 @@
          
          </div>
       </div>
-   <!-- Main -->
+      
+      <!-- =========================================
+					플로팅메뉴
+			========================================= -->
+			
+			<script type="text/javascript">
+			function FloatMenu(){
+			var animationSpeed=1500;
+			var animationEasing='easeOutQuint';
+			var scrollAmount=$(document).scrollTop();
+			var newPosition=menuPosition+scrollAmount;
+			if($(window).height()<$('#fl_menu').height()+$('#fl_menu .menu').height()){
+			$('#fl_menu').css('top',menuPosition);
+			} else {
+			$('#fl_menu').stop().animate({top: newPosition}, animationSpeed, animationEasing);
+				}
+			}
+			$(window).load(function() {
+			menuPosition=$('#fl_menu').position().top;
+			FloatMenu();
+			});
+			$(window).scroll(function () { 
+			FloatMenu();
+			});
+			jQuery(document).ready(function(){
+			var fadeSpeed=500;
+			$("#fl_menu").hover(
+			function(){ //mouse over
+				$('#fl_menu .label').fadeTo(fadeSpeed, 1);
+				$("#fl_menu .menu").fadeIn(fadeSpeed);
+			},
+			function(){ //mouse out
+				$('#fl_menu .label').fadeTo(fadeSpeed, 0.75);
+				$("#fl_menu .menu").fadeOut(fadeSpeed);
+			}
+			);
+			});
+			</script>
+			
+			<div id="fl_menu" style="top: 200px;">
+			<div class="label">빠른메뉴</div>
+			<div class="menu" style="">
+    		<a href="../../index.jsp" class="menu_item">로그아웃</a>
+       		<a href="/ProtoType/member/mymain" class="menu_item">마이페이지</a>
+        	<a href="#" class="menu_item">지역설정변경</a>
+        	<%if((session.getAttribute("id")!=null)&&(session.getAttribute("id").equals("master"))){ %>
+			<a href="/ProtoType/master/main" class="menu_item">관리자 페이지 가기</a>
+			<%} %>
+     
+    		</div>
+			</div>
+   <!-- =========================================
+					메인종료
+			========================================= -->
 
    <!-- Footer -->
       <div id="footer">
@@ -221,6 +276,6 @@
             Design: <a href="http://templated.co">TEMPLATED</a> Images: <a href="http://unsplash.com">Unsplash</a> (<a href="http://unsplash.com/cc0">CC0</a>)
          </div>
       </div>
-
+		
    </body>
 </html>

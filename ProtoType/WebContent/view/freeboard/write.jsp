@@ -8,12 +8,10 @@
 </head>
 <body>
 <h1> ** 자유 게시판 글 작성**</h1>
-<%
-String loginid =(String) (session.getAttribute("id")==null ? "null" : session.getAttribute("id"));
-String loginnickname =(String) (session.getAttribute("nickname")==null ? "null" : session.getAttribute("nickname"));
-%>
-<p>	로그인 id : <%=loginid%><br>
-	로그인 nickname : <%=loginnickname%></p>
+		<%String loginid =(String) session.getAttribute("id");%>
+	<p>
+		로그인 id :
+		<%=loginid%></p>
 <hr>
 <form action="/ProtoType/freeboard/write.do" method="post">
 <label>글 머리</label>
